@@ -3,6 +3,7 @@ import { Link } from '../routes'
 
 import { connect } from 'react-redux'
 import { fillPaintings } from '../redux-store'
+import Layout from './../components/layout/Layout'
 
 class Index extends React.Component{
 
@@ -45,14 +46,14 @@ class Index extends React.Component{
 			return <h3>Loading...</h3>
 		}
 
-		return(<div>
+		return(<Layout title='Huebris Arts'>
 			<h3>HUEBRIS ARTS</h3>
 			<Link route="store" prefetch>
 				<a className="channel">
 					Go to Store
 				</a>
 			</Link>
-		</div>)
+		</Layout>)
 	}
 
 
