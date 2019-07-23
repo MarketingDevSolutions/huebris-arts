@@ -16,7 +16,7 @@ const Header = () => (
 			<Link href="/">
 				<a className="option">ABOUT</a>
 			</Link>
-			<Link href="/">
+			<Link href="/contact">
 				<a className="option">CONTACT</a>
 			</Link>
 		</div>

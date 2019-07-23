@@ -25,6 +25,7 @@ export default class Layout extends React.Component{
 			{ children }
 			<style jsx global>{`
         body {
+          overflow-x: hidden;
           margin: 0;
           font-family: 'Open Sans Condensed';
           padding: 20px 60px;

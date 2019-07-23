@@ -42,17 +42,17 @@ class Index extends React.Component{
 
 	render(){
 
-		if (this.state.loading) {
-			return <h3>Loading...</h3>
-		}
-
-		return(<Layout title='Huebris Arts'>
-			<h3>HUEBRIS ARTS</h3>
-			<Link route="store" prefetch>
-				<a className="channel">
-					Go to Store
-				</a>
-			</Link>
+		return(
+			<Layout title='Huebris Arts'>		
+			{this.state.loading ?  <h3>Loading...</h3> :
+						<div> 
+						<h3>HUEBRIS ARTS</h3>
+						<Link route="store" prefetch>
+							<a className="channel">
+								Go to Store
+							</a>
+						</Link>
+						</div>}
 		</Layout>)
 	}
 
