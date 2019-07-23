@@ -2,10 +2,7 @@ import React from "react";
 import Layout from "./Layout";
 
 function Footer(){
-return(
-  <div>
-        <Layout>
-            
+return( 
             <footer>
                 
                 
@@ -60,8 +57,7 @@ return(
             
             
             </footer>
-        </Layout>
-  </div>
+       
 );
 
 }
