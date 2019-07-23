@@ -6,11 +6,11 @@ return(
             <footer>
                 
                 
-                <div class="div-general">  
+                <div className="div-general">  
                    
                     <div class="container">
                
-                        <div class="colum1">
+                        <div className="colum1">
                             <h1>Mas informacion</h1>
                              <p> lorem ipsum dolor sit amet, con
                                 sectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
@@ -21,25 +21,25 @@ return(
                              </p>
                         </div>
                 
-                        <div class="colum2">
+                        <div className="colum2">
                             <h1>Redes sociales</h1>
                     
-                            <div class="row">
+                            <div className="row">
                                 <img src="icons/face.png" />
                                 <label>Sigueme en Facebook </label>
                             </div>
 
-                            <div class="row">
+                            <div className="row">
                                 <img src="icons/twitter.png" />
                                 <label>Sigueme en Twitter </label>
                             </div>
 
-                            <div class="row">
+                            <div className="row">
                                 <img src="icons/ig.png" />
                                 <label>Sigueme en Instagram</label>
                              </div>
 
-                            <div class="row">
+                            <div className="row">
                                 <img src="icons/printerest.png" />
                                 <label>Sigueme en Printerest </label>
                             </div>
@@ -48,8 +48,8 @@ return(
 
                     </div>
 
-                    <div class="containerCr">
-                        <div class="copyright">© 2019 Copyright: </div>
+                    <div className="containerCr">
+                        <div className="copyright">© 2019 Copyright: </div>
                     </div>
                 
                 
@@ -71,7 +71,7 @@ return(
             color: #f5f5f5;
           }
 
-          
+
           .div-general {
             width: 100%;
             margin: auto;
@@ -131,7 +131,7 @@ return(
             
             </footer>
        
-);
+ );
 
 }
 
