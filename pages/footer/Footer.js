@@ -28,22 +28,22 @@ return(
                             <h1>Redes sociales</h1>
                     
                             <div class="row">
-                                <img src="" />
+                                <img src="icons/face.png" />
                                 <label>Sigueme en Facebook </label>
                             </div>
 
                             <div class="row">
-                                <img src="" />
+                                <img src="icons/twitter.png" />
                                 <label>Sigueme en Twitter </label>
                             </div>
 
                             <div class="row">
-                                <img src="" />
+                                <img src="icons/ig.png" />
                                 <label>Sigueme en Instagram</label>
                              </div>
 
                             <div class="row">
-                                <img src="" />
+                                <img src="icons/printerest.png" />
                                 <label>Sigueme en Printerest </label>
                             </div>
 
