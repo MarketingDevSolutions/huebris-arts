@@ -1,5 +1,10 @@
 import React from "react";
 import Layout from "./Layout";
+import face from "./face.png";
+import ig from "./ig.png";
+import printerest from "./printeres.png";
+import twitter from "./twitter.png";
+
 
 function Footer(){
 return( 
@@ -25,22 +30,22 @@ return(
                             <h1>Redes sociales</h1>
                     
                             <div className="row">
-                                <img src="icons/face.png" />
+                                <img src={face} />
                                 <label>Sigueme en Facebook </label>
                             </div>
 
                             <div className="row">
-                                <img src="icons/twitter.png" />
+                                <img src={twitter} />
                                 <label>Sigueme en Twitter </label>
                             </div>
 
                             <div className="row">
-                                <img src="icons/ig.png" />
+                                <img src={ig}/>
                                 <label>Sigueme en Instagram</label>
                              </div>
 
                             <div className="row">
-                                <img src="icons/printerest.png" />
+                                <img src={printerest} />
                                 <label>Sigueme en Printerest </label>
                             </div>
 
