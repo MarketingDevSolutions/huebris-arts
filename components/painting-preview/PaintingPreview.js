@@ -2,7 +2,9 @@ import React from 'react';
 
 import PaintingItem from '../painting-item/PaintingItem';
 
-const PaintingPreview = ({ paintings}) => {
+import './painting-preview.styles.css';
+
+const PaintingPreview = ({paintings}) => {
 
 console.log(paintings);
 
@@ -13,20 +15,6 @@ console.log(paintings);
           <PaintingItem key={painting.id} painting={painting} />
         ))}
     </div>
-    <style jsx>
-      {`
-        .collection-preview {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 30px;
-          }
-
-        .preview {
-          display: flex;
-          justify-content: space-between;
-        }
-        `}
-    </style>
   </div>
 }
 

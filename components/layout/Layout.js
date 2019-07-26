@@ -18,6 +18,8 @@ export default class Layout extends React.Component{
 
 		return <div>
 			<Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="shortcut icon" type="image/x-icon" href="/static/logo.png" />
 				<title>{title}</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>
 			</Head>

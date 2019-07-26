@@ -1,25 +1,25 @@
 import { connect } from 'react-redux'
 import Layout from './../components/layout/Layout'
-import PaintingPreview from './../components/painting-preview/PaintingPreview'
+import PrintPreview from './../components/print-preview/PrintPreview'
 
 class Store extends React.Component{
 
 	render(){
 
-		const { paintings } = this.props;
-		console.log(paintings)
+		const { prints } = this.props;
+		console.log(prints)
 		return(
 		<Layout title='Store | Huebris Arts'>
 			<h1>STORE</h1>
-			<h2 className='title'>PAINTINGS</h2>
-		    <PaintingPreview paintings={paintings}/>
+			<h2 className='title'>PRINTS</h2>
+		    <PrintPreview prints={prints}/>
 		</Layout>)
 	}
 }
 
 function mapStateToProps(state) {
-  const { paintings } = state
-  return { paintings }
+  const { prints } = state
+  return { prints }
 }
 
 export default connect(mapStateToProps)(Store)

@@ -5,8 +5,7 @@ const Header = () => (
 	<div className="header">
 		<Link href="/">
 			<a className="logo-container">
-				{/*<img src='./../../static/huebris-logo.JPG'/>*/}
-				🏚
+				<img src='./../../static/logo.png'/>
 			</a>
 		</Link>
 		<div className="options">

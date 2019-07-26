@@ -19,19 +19,20 @@ const PaintingItem = ({painting}) => {
     <style jsx>
       {`
         .painting-item {
-  width: 22%;
-  display: flex;
-  flex-direction: column;
-  height: 350px;
-  align-items: center;
-
-}
+          width: 90%;
+          display: flex;
+          flex-direction: column;
+          height: 350px;
+          align-items: center;
+          margin-bottom: 20%;
+        }
   .image {
     width: 100%;
     height: 95%;
     background-size: cover;
     background-position: center;
-    margin-bottom: 5px;
+    display: block;
+    margin: 5px auto;
   }
 
   .painting-footer {
@@ -43,12 +44,12 @@ const PaintingItem = ({painting}) => {
 
   }
     .title {
-      width: 75%;
+      width: 80%;
       margin-bottom: 15px;
     }
 
     .measurements {
-      width: 25%;
+      width: 20%;
     }
 `}
     </style>
