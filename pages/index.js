@@ -65,12 +65,12 @@ class Index extends React.Component{
 		const { paintings } = this.props
 		return(
 			<Layout title='Huebris Arts'>		
-			{this.state.loading ?  <h3>Loading...</h3> :
-				<div> 
-					<h3>HUEBRIS ARTS</h3>
-					<h2 className='title'>PAINTINGS</h2>
-					<PaintingPreview paintings={paintings}/>
-				</div>}
+				{this.state.loading ?  <h3>Loading...</h3> :
+					<div> 
+						<h3>HUEBRIS ARTS</h3>
+						<h2 className='title'>PAINTINGS</h2>
+						<PaintingPreview paintings={paintings}/>
+					</div>}
 		</Layout>)
 	}
 

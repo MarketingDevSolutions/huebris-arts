@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 const initialState = {
   cart: [],
+  openPainting: null,
   paintings: [],
   smallCanvases:[],
   prints:[]
@@ -12,7 +13,9 @@ export const actionTypes = {
   FILL_PAINTINGS: 'FILL_PAINTINGS',
   FILL_PRINTS: 'FILL_PRINTS',
   FILL_CANVASES: 'FILL_CANVASES',
-  ADD_ITEM_TO_CART: 'ADD_ITEM_TO_CART'
+  ADD_ITEM_TO_CART: 'ADD_ITEM_TO_CART',
+  OPEN_PAINTING_MODAL: 'OPEN_PAINTING_MODAL',
+  CLOSE_PAINTING_MODAL: 'CLOSE_PAINTING_MODAL',
 }
 
 // REDUCERS
@@ -39,6 +42,16 @@ export const reducer = (state = initialState, action) => {
         cart: state.cart.concat(action.item)
     }
       break;
+    case actionTypes.OPEN_PAINTING_MODAL:
+       return Object.assign({}, state, {
+        openPainting: action.painting
+      })
+      break;
+    case actionTypes.CLOSE_PAINTING_MODAL:
+       return Object.assign({}, state, {
+        openPainting: null
+      })
+      break;
     default:
       return state
   }
@@ -59,6 +72,14 @@ export const saveCanvasesData = (canvases) => {
 
 export const addItemToCart = (item) => {
   return { type: actionTypes.ADD_ITEM_TO_CART, item}
+}
+
+export const openPaintingModal = (painting) => {
+  return { type: actionTypes.OPEN_PAINTING_MODAL, painting}
+}
+
+export const closePaintingModal = () => {
+  return { type: actionTypes.CLOSE_PAINTING_MODAL }
 }
 
 export function initializeStore (initialState = initialState) {

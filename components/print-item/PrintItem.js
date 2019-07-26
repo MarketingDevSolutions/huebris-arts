@@ -7,13 +7,14 @@ constructor(){
     super();
     this.state = {
       amount: 0,
-      addedToCart: false
+      addedToCart: false,
+      isCheckout: false
     }
   }
 
   handleChange =(event)=>{
     this.setState({
-      amount: event.target.value 
+      amount: parseInt(event.target.value)
     });
   }
 
@@ -28,8 +29,7 @@ constructor(){
 
     this.props.addItemToCart({
       type: 'print',
-      title,
-      id,
+      item: this.props.print,
       amount,
       price
     });
@@ -40,14 +40,22 @@ constructor(){
       addedToCart: true
     });
   }
+
+  checkout = (event) =>{
+    console.log('Bought');
+
+    this.setState({
+      isCheckout: true
+    });
+  }
 render(){
   const { print } = this.props
   const { url } = print.image.fields.file;
   const { title } = print;
-  const { amount, addedToCart } = this.state
+  const { amount, addedToCart, isCheckout } = this.state
 
   let price = 35;
-  if(amount != 2){
+  if(amount !== 2){
     price = 20;
   }
 
@@ -71,15 +79,34 @@ render(){
            />
          <label>PRICE: {price}$</label>
       </div>
-    <div className="buttons">
-        <CustomButton disabled={addedToCart}>CHECKOUT</CustomButton>
-        <div className="margin-div"></div>
-        <span onClick={this.addToCart}>
-          <CustomButton>{addedToCart ? 'ADDED' : 'ADD TO CART'}</CustomButton>
-        </span>
-    </div>
+    {
+      amount >= 1 && amount <= 2 ?
+      <div className="buttons">
+            {
+              isCheckout ?
+              <h5 className="added">THANK YOU!</h5> : 
+    
+              <span onClick={this.checkout}>
+                <CustomButton>CHECKOUT</CustomButton>
+              </span>
+            }
+            <div className="margin-div"></div>
+            {
+              addedToCart ?
+              <h5 className="added">ADDED TO CART</h5> : 
+    
+              <span onClick={this.addToCart}>
+                <CustomButton>ADD TO CART</CustomButton>
+              </span>
+            }
+        </div> : null }
     <style jsx>
       {`
+
+        .added{
+          text-align: center;
+          margin: 10px 0;
+        }
         .amount-div{
           content-align: center;
         }
