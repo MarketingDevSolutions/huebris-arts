@@ -1,57 +1,63 @@
 import React from "react";
-
+import Layout from "../components/layout/Layout";
 
 function About(){
 
     return(
-
-        <div className="MainContainer">
-            <img src="" />
+        <Layout>
+        <div className="maincontent">
+            <img src="../static/Logo Blue.JPG" alt="Huebris" />
 
             <h1>
-            Huebris Arts
+            About the Artist – “Huebris” (Lauren Rust) 
             </h1>
 
             <div className="Containerp">
                 <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                 et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugi
-                 at. Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamc
-                 r. Amet luctus venenatis lectus magna fringilla. Volutpat maecenas volutpat blandit aliquam etiam erat v
-                 elit scelerisque in. Egestas egestas fringilla phasellus faucibus scelerisque eleifend. Sagittis orci a s
-                 celerisque purus semper eget duis. Nulla pharetra diam sit amet nisl suscipit. Sed adipiscing diam donec 
-                 adipiscing tristique risus nec feugiat in. Fusce ut placerat orci nulla. Pharetra vel turpis nunc eget l
-                 orem dolor. Tristique senectus et netus et malesuada.
+                Biography: Since I was a child, I have been drawing, painting, taking photos and creating things. I continue this 
+                childhood passion with the aim of expressing ideas, opinions and feelings that I have. I go by the name 'Huebris' 
+                as an artist because I like anonymity and I identify with the concept of 'hubris' from Greek tragedies; a character 
+                flaw marked by excessive pride which brings the hero to her ultimate demise. I changed the spelling of the word to 
+                include "hue" in reference to the bright colors I work with. In this site you will see various original works that 
+                I have converted into prints, as well as drawings and photos. I am happy to do customized or commission work, if 
+                interested, please call or email me and we can set up a time to meet or video call. 
                 </p>
 
             </div>
 
             <style jsx>
             {`
-            .maincontainer{
-                            padding-top: 10%;
-  
-                            }
-
-            img{
-                display: block;
-                margin: auto;
-                height: 150px;
- 
-                }
-
-            .containerp{
-  
-                margin:25px 50px 0;
-  
+            
+            .maincontent{
+               margin: 0 10vw;
             }
 
+            img{
+                height: 250px;
+                width: 250px;
+                
+                border-radius: 350px;
+                display: block;
+                margin:auto;
+               /* margin: 10% auto auto;*/
+                
+                }
+                
+                img:hover { 
+
+                    opacity: .89;
+              
+                }
+            
+
             p{
+                font-size: 20px;
                 text-aling: justify;
             }
 
 
             h1 {
+                font-size:50px;
                 margin-top: 30px;
                 text-align: center;
                 }
@@ -66,7 +72,7 @@ function About(){
             </style>
 
          </div>
-
+    </Layout>
     );
 
 }
