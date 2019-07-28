@@ -26,8 +26,6 @@ class Index extends React.Component{
 		  		loading: false
 		});
 
-		  	console.log('ENTRIES', entries);
-
 		// Filters paintings  	
 	  	const paintings = entries.items.filter((entry)=> {
 	  		return entry.sys.contentType.sys.id === 'painting';

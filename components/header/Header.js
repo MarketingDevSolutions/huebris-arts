@@ -1,7 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
+import { connect } from 'react-redux';
 
-const Header = () => (
+class Header extends React.Component{
+	constructor(){
+	    super();
+	  }
+
+	  openCart = () => {
+	  	this.props.openCart();
+	  }
+
+  render(){
+
+  	const { cart } = this.props;
+
+  	let amount = 0;
+  	cart.forEach((item)=>{
+  		amount = amount + item.amount;
+  	})
+
+  	return(
 	<div className="header">
 		<Link href="/">
 			<a className="logo-container">
@@ -18,10 +37,22 @@ const Header = () => (
 			<Link href="/contact">
 				<a className="option">CONTACT</a>
 			</Link>
+				<a className="cart-link" onClick={this.openCart}>
+					<img className="cart-icon" src='./../../static/cart.png'/>
+					<b> {amount}</b>
+				</a>
 		</div>
 
 		<style jsx>
 			{`
+
+				.cart-link{
+					cursor: pointer;
+				}
+			.cart-icon{
+				width: 15px;
+				height: 15px;
+			}
 			.header {
 				  height: 70px;
 				  width: 100%;
@@ -56,6 +87,20 @@ const Header = () => (
 						`}
 		</style>
 	</div>
-);
+)}};
 
-export default Header;
+function mapStateToProps(state) {
+  const { cart } = state
+  return { cart }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    openCart: () => dispatch({
+      type: 'OPEN_CART'
+    })
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

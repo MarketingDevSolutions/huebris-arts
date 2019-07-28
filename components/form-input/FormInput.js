@@ -19,13 +19,15 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
 			$main-color: black;
 
 			.group {
+			  float: center;
 			  position: relative;
 			  margin: 45px 0;
 
 			}
 
 			textarea{
-				max-width: 80%;
+				max-width: 70vw;
+				height: 40vh;
 				resize: none;
 			    border: 1px solid black;
 			}
@@ -103,7 +105,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
 
 			}
 			 .form-input {
-			 	max-width: 80%;
+			 	max-width: 70vw;
 			    background: none;
 			    background-color: white;
 			    color: grey;

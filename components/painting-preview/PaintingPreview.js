@@ -6,8 +6,6 @@ import './painting-preview.styles.css';
 
 const PaintingPreview = ({paintings}) => {
 
-console.log(paintings);
-
   return <div className='collection-preview'>
     <div className='preview'>
       {paintings

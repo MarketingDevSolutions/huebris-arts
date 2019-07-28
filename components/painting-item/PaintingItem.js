@@ -12,7 +12,7 @@ const PaintingItem = ({painting}) =>{
             slug: slug(title),
             id
           }} prefetch>
-           <div className='painting-item'>
+           <a className='painting-item'>
       <div
         className='image'
         style={{
@@ -56,11 +56,12 @@ const PaintingItem = ({painting}) =>{
       }
 
       .measurements {
+        text-align: right;
         width: 20%;
       }
   `}
       </style>
-      </div>
+      </a>
     </Link>
     }
 

@@ -1,0 +1,40 @@
+.cart-item{
+	margin: 10% 5%;
+	width: 90%;
+	height: 20vh;
+	display: flex;
+}
+
+.cart-image{
+	width: 100%;
+	height: 100%;
+}
+
+.image-div{
+	width: 30%;
+}
+
+.info-div{
+	width: 60%;
+}
+
+.remove-div{
+	width: 10%;
+}
+
+.remove-div a {
+	cursor: pointer;
+}
+
+.father-vertical{
+	position: relative;
+}
+
+.child-vertical{
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

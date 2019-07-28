@@ -76,7 +76,8 @@ class ContactForm extends React.Component{
 				<style jsx>
 			{`
 			.contact-form{
-				width: 100vw;
+				justify-content: center;
+				width: 100%;
 				display: flex;
 				flex-direction: column;
 			}

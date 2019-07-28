@@ -1,8 +1,10 @@
-import Link from 'next/link'
-import Head from 'next/head'
-import NProgress from 'nprogress'
-import Router from 'next/router'
-import Header from './../header/Header'
+import Link from 'next/link';
+import Head from 'next/head';
+import NProgress from 'nprogress';
+import Router from 'next/router';
+import Header from './../header/Header';
+import Cart from './../cart/Cart';
+import { connect } from 'react-redux';
 
 Router.onRouteChangeStart = (url) => {
   NProgress.start()
@@ -11,10 +13,10 @@ Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
 
 
-export default class Layout extends React.Component{
+class Layout extends React.Component{
 	render(){
 
-		const { children, title }= this.props
+		const { children, title } = this.props
 
 		return <div>
 			<Head>
@@ -25,6 +27,7 @@ export default class Layout extends React.Component{
 			</Head>
 			<Header/>
 			{ children }
+      <Cart/>
 			<style jsx global>{`
 
         body {
@@ -117,3 +120,5 @@ export default class Layout extends React.Component{
 		</div>
 	}
 }
+
+export default Layout;

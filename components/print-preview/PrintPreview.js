@@ -6,8 +6,6 @@ import './print-preview.styles.css';
 
 const PrintPreview = ({prints}) => {
 
-console.log(prints);
-
   return <div className='collection-preview'>
     <div className='preview'>
       {prints.map((print) => (
