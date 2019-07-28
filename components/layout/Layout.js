@@ -5,6 +5,7 @@ import Router from 'next/router';
 import Header from './../header/Header';
 import Cart from './../cart/Cart';
 import { connect } from 'react-redux';
+import * as contentful from 'contentful';
 
 Router.onRouteChangeStart = (url) => {
   NProgress.start()
@@ -14,9 +15,68 @@ Router.onRouteChangeError = () => NProgress.done()
 
 
 class Layout extends React.Component{
+
+  constructor(){
+    super();
+    this.state = {
+      loading: false
+    }
+  }
+
+  getContentfulData = () =>{
+
+    const { paintings } = this.props;
+
+      if (paintings.length < 1){
+        this.setState({
+              loading: true
+        })
+        var client = contentful.createClient({
+             space: '7k4em0fo2yla',
+             accessToken: 'ovr3_ng-_QThDTpfGsa7YecRCKzQAm3ExfZrcns_Mco'
+        })
+  
+        client.getEntries().then(entries =>{
+            this.setState({
+              loading: false
+        });
+  
+        // Filters paintings    
+          const paintings = entries.items.filter((entry)=> {
+            return entry.sys.contentType.sys.id === 'painting';
+          }).map((item)=>{
+            return item.fields
+          })
+  
+          // Filters prints   
+          const prints = entries.items.filter((entry)=> {
+            return entry.sys.contentType.sys.id === 'print';
+          }).map((item)=>{
+            return item.fields
+          })
+  
+          // Filters canvases   
+          const canvases = entries.items.filter((entry)=> {
+            return entry.sys.contentType.sys.id === 'miniCanvas';
+          }).map((item)=>{
+            return item.fields
+          })
+  
+           this.props.fillPaintings(paintings);
+           this.props.fillPrints(prints);
+           this.props.fillCanvases(canvases);
+  
+        })}
+  }
+
+  componentDidMount() {
+    this.getContentfulData();
+  }
+
 	render(){
 
 		const { children, title } = this.props
+    const { loading } = this.state
 
 		return <div>
 			<Head>
@@ -26,7 +86,7 @@ class Layout extends React.Component{
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>
 			</Head>
 			<Header/>
-			{ children }
+			   { loading ?<h3>Loading...</h3> : children }
       <Cart/>
 			<style jsx global>{`
 
@@ -121,4 +181,27 @@ class Layout extends React.Component{
 	}
 }
 
-export default Layout;
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    fillPaintings: (paintings) => dispatch({
+      type: 'FILL_PAINTINGS',
+      paintings
+    }), 
+    fillPrints: (prints) => dispatch({
+      type: 'FILL_PRINTS',
+      prints
+    }), 
+    fillCanvases: (canvases) => dispatch({
+      type: 'FILL_CANVASES',
+      canvases
+    }),
+  }
+}
+
+function mapStateToProps(state) {
+  const { paintings } = state
+  return { paintings }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

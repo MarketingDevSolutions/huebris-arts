@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 class PrintItem extends React.Component{
 constructor(){
     super();
+
     this.state = {
       amount: 0,
       addedToCart: false,
@@ -34,8 +35,6 @@ constructor(){
       price
     });
 
-    console.log('Added');
-
     this.setState({
       addedToCart: true
     });
@@ -48,10 +47,28 @@ constructor(){
       isCheckout: true
     });
   }
+
+  componentDidMount() {
+    const { cart, print } = this.props;
+    let found = false
+
+    cart.forEach((element)=>{
+      if (element.item.id === print.id){
+        found = true;
+        return
+      }
+
+      this.setState({
+          addedToCart: found 
+        });
+    })
+  }
+
 render(){
   const { print } = this.props
   const { url } = print.image.fields.file;
   const { title } = print;
+
   const { amount, addedToCart, isCheckout } = this.state
 
   let price = 35;
@@ -166,8 +183,8 @@ render(){
 }
 }
 function mapStateToProps(state) {
-  const { prints } = state
-  return { prints }
+  const { cart } = state
+  return { cart }
 }
 
 const mapDispatchToProps = (dispatch) => {

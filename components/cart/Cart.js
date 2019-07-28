@@ -33,7 +33,10 @@ class Cart extends React.Component {
   	})
 
   	const cartList = cart.map((cartItem)=>{
-  		return <CartItem cartItem={cartItem} onRemoveClick={this.handleRemoveItem}/>
+  		return <CartItem 
+  				key={cartItem.item.id} 
+  				cartItem={cartItem} 
+  				onRemoveClick={this.handleRemoveItem}/>
   	})
 
 
