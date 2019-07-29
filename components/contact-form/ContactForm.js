@@ -68,15 +68,19 @@ class ContactForm extends React.Component{
 						value={this.state.message} 
 						onChange={this.handleChange} 
 						required/>
-					<CustomButton 
-						type="submit">
-					SEND
-					</CustomButton>
+					
+					<span onClick={(event)=>event.preventDefault()}>
+						<CustomButton 
+							type="submit">
+						SEND
+						</CustomButton>
+					</span>
 				</form>
 				<style jsx>
 			{`
 			.contact-form{
-				width: 100vw;
+				text-align: center;
+				width: 100%;
 				display: flex;
 				flex-direction: column;
 			}

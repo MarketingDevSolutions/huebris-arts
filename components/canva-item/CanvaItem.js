@@ -1,31 +1,23 @@
 import React from 'react';
-import slug from '../../helpers/slug';
-import { connect } from 'react-redux';
-import { Link } from '../../routes'
 
-const PaintingItem = ({painting}) =>{
+const CanvaItem = ({canva}) =>{
 
-    const { url } = painting.picture.fields.file;
-    const { title, measurements, id } = painting;
+    const { url } = canva.image.fields.file;
+    const { title } = canva;
 
-  return <Link route="painting" params={{
-            slug: slug(title),
-            id
-          }} prefetch>
-           <a className='painting-item'>
+  return <div className='canva-item'>
       <div
         className='image'
         style={{
           backgroundImage: `url(${url})`
         }}
       />
-      <div className='painting-footer'>
+      <div className='canva-footer'>
         <span className='title'><b>{title}</b></span>
-        <span className='measurements'>{measurements}</span>
       </div>
       <style jsx>
         {`
-          .painting-item {
+          .canva-item {
             width: 90%;
             display: flex;
             flex-direction: column;
@@ -42,7 +34,7 @@ const PaintingItem = ({painting}) =>{
       margin: 5px auto;
     }
 
-    .painting-footer {
+    .canva-footer {
       width: 100%;
       height: 5%;
       display: flex;
@@ -54,15 +46,9 @@ const PaintingItem = ({painting}) =>{
         width: 80%;
         margin-bottom: 15px;
       }
-
-      .measurements {
-        text-align: right;
-        width: 20%;
-      }
   `}
       </style>
-      </a>
-    </Link>
+      </div>
     }
 
-export default PaintingItem;
+export default CanvaItem;

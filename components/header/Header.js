@@ -1,62 +1,113 @@
 import React from 'react';
 import Link from 'next/link';
+import { connect } from 'react-redux';
+import './header.styles.css';
 
-const Header = () => (
-	<div className="header">
-		<Link href="/">
-			<a className="logo-container">
-				{/*<img src='./../../static/huebris-logo.JPG'/>*/}
-				🏚
-			</a>
-		</Link>
-		<div className="options">
-			<Link href="/store">
-				<a className="option">STORE</a>
-			</Link>
-			<Link href="/">
-				<a className="option">ABOUT</a>
-			</Link>
-			<Link href="/contact">
-				<a className="option">CONTACT</a>
-			</Link>
+class Header extends React.Component{
+	constructor(){
+	    super();
+	    this.state = {
+	    	displayMenu: false
+	    }
+	  }
+
+	  openCart = () => {
+	  	this.props.openCart();
+	  }
+
+	  showHideMenu = () =>{
+	  	this.setState({
+	  		displayMenu: !this.state.displayMenu
+	  	});
+	  }
+
+  render(){
+
+  	const { displayMenu } = this.state
+
+	//Controls class of menu item
+	let menuClass;
+	if (displayMenu){
+		menuClass = 'mobile-options show-menu';
+	} else {
+		menuClass = 'mobile-options';
+	}
+
+  	const { cart } = this.props;
+
+  	let amount = 0;
+  	cart.forEach((item)=>{
+  		amount = amount + item.amount;
+  	})
+
+  	return(
+	<div>
+  		<div className="menu-icon-container" onClick={this.showHideMenu}>
+			<img src="./../../static/menu.svg" className="child-vertical" />
 		</div>
-
-		<style jsx>
-			{`
-			.header {
-				  height: 70px;
-				  width: 100%;
-				  display: flex;
-				  justify-content: space-between;
-				  margin-bottom: 40px;
-				}
-						
-		    .logo-container {
-			    height: 100%;
-			    width: 70px;
-			    padding: 25px;
-			  }
-
-			.logo-container img {
-				width: 100px;
-			}
-			
-		    .options {
-			    width: 50%;
-			    height: 100%;
-			    display: flex;
-			    align-items: center;
-			    justify-content: flex-end;
-			
-			  }
-		     .option {
-		     	  margin-right: 1em;
-			      padding: 10px 15px;
-			      text-decoration: none;
-			    }
-						`}
-		</style>
+		<div className="header">
+			<div className="top-header">
+				<div className="logo-container">
+					<Link href="/">
+						<a>
+							<img src='./../../static/logo.png'/>
+						</a>
+					</Link>
+				</div>
+				<div className="cart-icon-container father-vertical">
+					<a className="cart-link child-vertical" onClick={this.openCart}>
+						<img className="cart-icon" src='./../../static/cart.png'/>
+						<span><b> {amount}</b></span>
+					</a>
+				</div>
+			</div>
+			<div className="options">
+				<Link href="/store">
+					<a className="option">STORE</a>
+				</Link>
+				<Link href="/about">
+					<a className="option">ABOUT</a>
+				</Link>
+				<Link href="/contact">
+					<a className="option">CONTACT</a>
+				</Link>
+					<a className="cart-link cart-desktop" onClick={this.openCart}>
+						<img className="cart-icon" src='./../../static/cart.png'/>
+						<b> {amount}</b>
+					</a>
+			</div>
+			<div className={menuClass}>
+				<div className="child-vertical">
+					<Link href="/">
+						<span className="option">HOME</span>
+					</Link>
+					<Link href="/store">
+						<span className="option">STORE</span>
+					</Link>
+					<Link href="/about">
+						<span className="option">ABOUT</span>
+					</Link>
+					<Link href="/contact">
+						<span className="option">CONTACT</span>
+					</Link>
+				</div>
+			</div>
+		</div>
 	</div>
-);
+)}};
 
-export default Header;
+function mapStateToProps(state) {
+  const { cart } = state
+  return { cart }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    openCart: () => dispatch({
+      type: 'OPEN_CART'
+    })
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
