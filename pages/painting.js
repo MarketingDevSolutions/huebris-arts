@@ -32,16 +32,14 @@ class Painting extends React.Component{
                 <h3 className="label"><b>DESCRIPTION: </b>{description}</h3>
                 <h3 className="label"><b>MEASUREMENTS: </b>{measurements}</h3>
                     <Link href="/">
-                      <a className="return">
+                      <span className="return">
                         <b>RETURN TO HOME</b>
-                      </a>
+                      </span>
                     </Link>
 
       <style jsx>
         {`
-          
-          
-          a{
+          .return{
             padding: 10px 20px;
             min-width: 165px;
             width: auto;
@@ -58,10 +56,10 @@ class Painting extends React.Component{
             cursor: pointer;
         }
 
-        a:hover{
+        .return:hover{
           background-color: white;
-      color: black;
-      border: 1px solid black;
+          color: black;
+          border: 1px solid black;
         }
           .painting-modal {
             text-align:center;
@@ -75,23 +73,6 @@ class Painting extends React.Component{
           display: block;
           margin: 5px auto;
         }
-
-    .painting-footer {
-      width: 100%;
-      height: 5%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 18px;
-
-    }
-      .title {
-        width: 80%;
-        margin-bottom: 15px;
-      }
-
-      .measurements {
-        width: 20%;
-      }
   `}
       </style>
     </div></Layout>)

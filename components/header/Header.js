@@ -65,7 +65,7 @@ class Header extends React.Component{
 				<Link href="/store">
 					<a className="option">STORE</a>
 				</Link>
-				<Link href="/">
+				<Link href="/about">
 					<a className="option">ABOUT</a>
 				</Link>
 				<Link href="/contact">
@@ -84,7 +84,7 @@ class Header extends React.Component{
 					<Link href="/store">
 						<span className="option">STORE</span>
 					</Link>
-					<Link href="/">
+					<Link href="/about">
 						<span className="option">ABOUT</span>
 					</Link>
 					<Link href="/contact">

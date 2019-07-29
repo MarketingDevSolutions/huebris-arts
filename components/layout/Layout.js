@@ -91,7 +91,6 @@ class Layout extends React.Component{
   			<Header/>
   			   { loading ?<h3>Loading...</h3> : children }
         <Cart/>
-        { children }
         <Footer/>
 			<style jsx global>{`
 

@@ -4,7 +4,7 @@ import Layout from "../components/layout/Layout";
 function About(){
 
     return(
-        <Layout>
+        <Layout title="About | Huebris Arts">
         <div className="maincontent">
             <img src="../static/huebris.png" alt="Huebris" />
 
@@ -27,41 +27,26 @@ function About(){
 
             <style jsx>
             {`
-            
-            .maincontent{
-               margin: 0 10vw;
-            }
 
             img{
                 height: 250px;
                 width: 250px;
-                
                 border-radius: 350px;
                 display: block;
                 margin:auto;
-               /* margin: 10% auto auto;*/
-                
                 }
-                
                 img:hover { 
-
                     opacity: .89;
-              
                 }
-            
-
             p{
                 font-size: 20px;
                 text-aling: justify;
             }
-
-
             h1 {
                 font-size:50px;
                 margin-top: 30px;
                 text-align: center;
                 }
-
             `}
             </style>
 
