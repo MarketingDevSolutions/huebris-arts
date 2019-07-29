@@ -6,7 +6,7 @@ import Header from './../header/Header';
 import Cart from './../cart/Cart';
 import { connect } from 'react-redux';
 import * as contentful from 'contentful';
-import 'bootstrap/dist/css/bootstrap.css';    
+// import 'bootstrap/dist/css/bootstrap.css';    
 
 Router.onRouteChangeStart = (url) => {
   NProgress.start()
@@ -99,9 +99,20 @@ class Layout extends React.Component{
           background: white;
         }
 
-        a{
-          text-decoration: none;
-          color: black;
+        .text-center{
+          text-align: center;
+        }
+
+        video{
+          margin: 0 7.5%;
+          width: 85%;
+          height: 75vh;
+          object-fit: fill;
+        }
+
+        a {
+          text-decoration: none!important;
+          color: black!important;
         }
 
         /* Make clicks pass-through */

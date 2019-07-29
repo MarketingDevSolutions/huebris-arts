@@ -83,7 +83,7 @@ render(){
         backgroundImage: `url(${url})`
       }}
     />
-      <span className='title'>{title}</span>
+      <span className='title'><b>{title}</b></span>
       <div className="amount-div">
          <label>AMOUNT:</label>
          <input 
@@ -93,7 +93,7 @@ render(){
            min="1" 
            max="2"
            onChange={this.handleChange}
-           />
+           /><br/>
          <label>PRICE: {price}$</label>
       </div>
     {
@@ -125,7 +125,7 @@ render(){
           margin: 10px 0;
         }
         .amount-div{
-          content-align: center;
+          text-align: center;
         }
         .amount-div label{
           margin-right: 5px;

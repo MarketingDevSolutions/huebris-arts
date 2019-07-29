@@ -20,7 +20,7 @@ const PaintingItem = ({painting}) =>{
         }}
       />
       <div className='painting-footer'>
-        <span className='title'>{title}</span>
+        <span className='title'><b>{title}</b></span>
         <span className='measurements'>{measurements}</span>
       </div>
       <style jsx>

@@ -13,7 +13,7 @@ const CanvaItem = ({canva}) =>{
         }}
       />
       <div className='canva-footer'>
-        <span className='title'>{title}</span>
+        <span className='title'><b>{title}</b></span>
       </div>
       <style jsx>
         {`

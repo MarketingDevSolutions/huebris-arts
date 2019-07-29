@@ -43,8 +43,8 @@ class Cart extends React.Component {
 
     return (
       <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''}`}>
-      	<div className="card-header">
-      		<div className="card-title">
+      	<div className="cart-header">
+      		<div className="cart-title">
 	      		<h1>
 	      			YOUR CART
 	      		</h1>

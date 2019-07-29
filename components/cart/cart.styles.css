@@ -18,11 +18,11 @@
   transform: translateX(0);
 }
 
-.card-header{
+.cart-header{
   display: flex;
 }
 
-.card-title{
+.cart-title{
   width: 80%;
 }
 
@@ -40,7 +40,7 @@ hr{
   line-height: 50px;
   font-size: 15px;
   background-color: black;
-  color: white;
+  color: white!important;
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;

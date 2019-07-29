@@ -30,6 +30,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
 				height: 40vh;
 				resize: none;
 			    border: 1px solid black;
+			    margin: 5% auto;
 			}
 			  .form-input {
 			    background: none;
@@ -40,7 +41,6 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
 			    display: block;
 			    width: 100%;
 			    border: 1px solid black;
-			    margin: 25px 0;
 
 			  }
 			    .form-input:focus {
@@ -63,7 +63,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
 			    font-weight: normal;
 			    position: absolute;
 			    pointer-events: none;
-			    left: 5px;
+			    left: 11%;
 			    top: 10px;
 			    transition: 300ms ease all;
 
@@ -114,7 +114,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
 			    display: block;
 			    width: 100%;
 			    border: 1px solid black;
-			    margin: 25px 0;
+			    margin: 5% auto;
 
 			  }
 			    .form-input:focus {
@@ -137,7 +137,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
 			    font-weight: normal;
 			    position: absolute;
 			    pointer-events: none;
-			    left: 5px;
+			    left: 11%;
 			    top: 10px;
 			    transition: 300ms ease all;
 
