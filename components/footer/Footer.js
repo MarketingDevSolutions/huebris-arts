@@ -27,12 +27,20 @@ return(
                             <h1>Social Networks</h1>
                     
                             <div className="row">
-                                <img src="/huebris-arts/components/footer/ig.png"/>
+                              
+                               <a href="">
+                               <img src="/huebris-arts/components/footer/ig.png"/>
+                               </a> 
+
                                 <label>Follow me on Facebook </label>
                             </div>
 
                             <div className="row">
-                                <img src="ig.PNGs" />
+                                
+                                <a href="">
+                                <img src="../ig.png" />
+                                </a>
+                                
                                 <label>Follow me on Instagram </label>
                             </div>
 
