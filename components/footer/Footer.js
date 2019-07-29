@@ -27,12 +27,12 @@ return(
                             <h1>Redes sociales</h1>
                     
                             <div className="row">
-                                <img src="/face.png"/>
+                                <img src="/huebris-arts/components/footer/ig.png"/>
                                 <label>Sigueme en Facebook </label>
                             </div>
 
                             <div className="row">
-                                <img src="ig.PNG" />
+                                <img src="ig.PNGs" />
                                 <label>Sigueme en Instagram </label>
                             </div>
 
@@ -61,7 +61,7 @@ return(
 
           footer{
             width: 100%; 
-            margin-top: 70vh;
+            margin:60vh 0 10vh; 
             
           }
 
@@ -99,7 +99,7 @@ return(
             
             max-width:1400px;
             width: 900px;
-            margin:10px 10px 10px 15%;
+            margin:10px 10px 10px 10%;
           }
           
           .colum2 h1{
