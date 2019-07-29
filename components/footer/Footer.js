@@ -13,7 +13,7 @@ return(
                     <div className="container">
                
                         <div className="colum1">
-                            <h1>Mas informacion</h1>
+                            <h1>More Information</h1>
                              <p> lorem ipsum dolor sit amet, con
                                 sectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
                                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -24,16 +24,16 @@ return(
                         </div>
                 
                         <div className="colum2">
-                            <h1>Redes sociales</h1>
+                            <h1>Social Networks</h1>
                     
                             <div className="row">
                                 <img src="/huebris-arts/components/footer/ig.png"/>
-                                <label>Sigueme en Facebook </label>
+                                <label>Follow me on Facebook </label>
                             </div>
 
                             <div className="row">
                                 <img src="ig.PNGs" />
-                                <label>Sigueme en Instagram </label>
+                                <label>Follow me on Instagram </label>
                             </div>
 
                             
