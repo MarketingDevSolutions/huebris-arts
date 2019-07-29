@@ -6,15 +6,15 @@ function About(){
     return(
         <Layout>
         <div className="maincontent">
-            <img src="../static/Logo Blue.JPG" alt="Huebris" />
+            <img src="../static/huebris.png" alt="Huebris" />
 
             <h1>
-            About the Artist – “Huebris” (Lauren Rust) 
+            Huebris (Lauren Rust) 
             </h1>
 
             <div className="Containerp">
                 <p>
-                Biography: Since I was a child, I have been drawing, painting, taking photos and creating things. I continue this 
+                Since I was a child, I have been drawing, painting, taking photos and creating things. I continue this 
                 childhood passion with the aim of expressing ideas, opinions and feelings that I have. I go by the name 'Huebris' 
                 as an artist because I like anonymity and I identify with the concept of 'hubris' from Greek tragedies; a character 
                 flaw marked by excessive pride which brings the hero to her ultimate demise. I changed the spelling of the word to 
@@ -61,12 +61,6 @@ function About(){
                 margin-top: 30px;
                 text-align: center;
                 }
-
-
-           
-
-
-
 
             `}
             </style>

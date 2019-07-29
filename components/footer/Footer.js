@@ -1,19 +1,16 @@
 import React from "react";
-import Layout from "./Layout";
-import face from "./face.png";
-import ig from "./ig.png";
-import printerest from "./printeres.png";
-import twitter from "./twitter.png";
+
 
 
 function Footer(){
 return( 
+         
             <footer>
                 
                 
                 <div className="div-general">  
                    
-                    <div class="container">
+                    <div className="container">
                
                         <div className="colum1">
                             <h1>Mas informacion</h1>
@@ -30,22 +27,22 @@ return(
                             <h1>Redes sociales</h1>
                     
                             <div className="row">
-                                <img src={face} />
+                                <img src="/face.png"/>
                                 <label>Sigueme en Facebook </label>
                             </div>
 
                             <div className="row">
-                                <img src={twitter} />
+                                <img src="" />
                                 <label>Sigueme en Twitter </label>
                             </div>
 
                             <div className="row">
-                                <img src={ig}/>
+                                <img src=""/>
                                 <label>Sigueme en Instagram</label>
                              </div>
 
                             <div className="row">
-                                <img src={printerest} />
+                                <img src="" />
                                 <label>Sigueme en Printerest </label>
                             </div>
 
@@ -71,24 +68,26 @@ return(
           }
 
           footer{
-            width: 100%;  
-            background-color: #202020;
-            color: #f5f5f5;
+            width: 100%; 
+            margin-top: 70vh;
+            
           }
 
 
           .div-general {
-            width: 100%;
-            margin: auto;
             
+            width: 100%;
+          
           }
           
           .container{
-            display: flex;
+            display:flex;
+            
             justify-content: center;
           }
           
             .colum1{
+              
              margin: 10px 10px 10px 20px;
             }            
 
@@ -105,9 +104,10 @@ return(
           }
 
           .colum2 {
+            
             max-width:1400px;
             width: 900px;
-            margin:10px;
+            margin:10px 10px 10px 15%;
           }
           
           .colum2 h1{
@@ -135,7 +135,7 @@ return(
                 </style>
             
             </footer>
-       
+           
  );
 
 }

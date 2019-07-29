@@ -3,6 +3,7 @@ import Head from 'next/head'
 import NProgress from 'nprogress'
 import Router from 'next/router'
 import Header from './../header/Header'
+import Footer from '../footer/Footer'
 
 Router.onRouteChangeStart = (url) => {
   NProgress.start()
@@ -22,7 +23,9 @@ export default class Layout extends React.Component{
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>
 			</Head>
 			<Header/>
-			{ children }
+      
+      { children }
+      <Footer/>
 			<style jsx global>{`
         body {
           overflow-x: hidden;
