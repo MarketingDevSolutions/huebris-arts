@@ -1,17 +1,19 @@
 import React from "react";
-import Layout from "./Layout";
+
+
 
 function Footer(){
 return( 
+         
             <footer>
                 
                 
                 <div className="div-general">  
                    
-                    <div class="container">
+                    <div className="container">
                
                         <div className="colum1">
-                            <h1>Mas informacion</h1>
+                            <h1>More Information</h1>
                              <p> lorem ipsum dolor sit amet, con
                                 sectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
                                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -22,27 +24,27 @@ return(
                         </div>
                 
                         <div className="colum2">
-                            <h1>Redes sociales</h1>
+                            <h1>Social Networks</h1>
                     
                             <div className="row">
-                                <img src="icons/face.png" />
-                                <label>Sigueme en Facebook </label>
+                              
+                               <a href="">
+                               <img src="/huebris-arts/components/footer/ig.png"/>
+                               </a> 
+
+                                <label>Follow me on Facebook </label>
                             </div>
 
                             <div className="row">
-                                <img src="icons/twitter.png" />
-                                <label>Sigueme en Twitter </label>
+                                
+                                <a href="">
+                                <img src="../ig.png" />
+                                </a>
+                                
+                                <label>Follow me on Instagram </label>
                             </div>
 
-                            <div className="row">
-                                <img src="icons/ig.png" />
-                                <label>Sigueme en Instagram</label>
-                             </div>
-
-                            <div className="row">
-                                <img src="icons/printerest.png" />
-                                <label>Sigueme en Printerest </label>
-                            </div>
+                            
 
                         </div>
 
@@ -62,28 +64,30 @@ return(
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: sans-serif; 
+            
           }
 
           footer{
-            width: 100%;  
-            background-color: #202020;
-            color: #f5f5f5;
+            width: 100%; 
+            margin:60vh 0 10vh; 
+            
           }
 
 
           .div-general {
-            width: 100%;
-            margin: auto;
             
+            width: 100%;
+          
           }
           
           .container{
-            display: flex;
+            display:flex;
+            
             justify-content: center;
           }
           
             .colum1{
+              
              margin: 10px 10px 10px 20px;
             }            
 
@@ -100,9 +104,10 @@ return(
           }
 
           .colum2 {
+            
             max-width:1400px;
             width: 900px;
-            margin:10px;
+            margin:10px 10px 10px 10%;
           }
           
           .colum2 h1{
@@ -130,7 +135,7 @@ return(
                 </style>
             
             </footer>
-       
+           
  );
 
 }

@@ -6,7 +6,9 @@ import Header from './../header/Header';
 import Cart from './../cart/Cart';
 import { connect } from 'react-redux';
 import * as contentful from 'contentful';
+import Footer from '../footer/Footer'
 // import 'bootstrap/dist/css/bootstrap.css';    
+
 
 Router.onRouteChangeStart = (url) => {
   NProgress.start()
@@ -86,9 +88,11 @@ class Layout extends React.Component{
 				<title>{title}</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>
 			</Head>
-			<Header/>
-			   { loading ?<h3>Loading...</h3> : children }
-      <Cart/>
+  			<Header/>
+  			   { loading ?<h3>Loading...</h3> : children }
+        <Cart/>
+        { children }
+        <Footer/>
 			<style jsx global>{`
 
         body {
