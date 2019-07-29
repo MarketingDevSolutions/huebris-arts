@@ -6,6 +6,7 @@ import Header from './../header/Header';
 import Cart from './../cart/Cart';
 import { connect } from 'react-redux';
 import * as contentful from 'contentful';
+import 'bootstrap/dist/css/bootstrap.css';    
 
 Router.onRouteChangeStart = (url) => {
   NProgress.start()
