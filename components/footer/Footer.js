@@ -32,19 +32,11 @@ return(
                             </div>
 
                             <div className="row">
-                                <img src="" />
-                                <label>Sigueme en Twitter </label>
+                                <img src="ig.PNG" />
+                                <label>Sigueme en Instagram </label>
                             </div>
 
-                            <div className="row">
-                                <img src=""/>
-                                <label>Sigueme en Instagram</label>
-                             </div>
-
-                            <div className="row">
-                                <img src="" />
-                                <label>Sigueme en Printerest </label>
-                            </div>
+                            
 
                         </div>
 
