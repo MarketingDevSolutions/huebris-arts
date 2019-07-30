@@ -42,7 +42,7 @@ class Cart extends React.Component {
 
 
     return (
-      <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''}`}>
+      <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''} father-vertical`}>
       	<div className="cart-header">
       		<div className="cart-title">
 	      		<h1>
@@ -70,7 +70,7 @@ class Cart extends React.Component {
 			  			</div>
 		  			</React.Fragment>
   				 : 
-  				<h3>YOUR CART IS EMPTY</h3>
+  				<h3 className="child-vertical">YOUR CART IS EMPTY</h3>
   			}
       </div>
     )
