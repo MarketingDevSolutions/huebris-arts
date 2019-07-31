@@ -9,23 +9,25 @@ constructor(){
 
     this.state = {
       amount: 0,
+      wantsToBuy: false,
       addedToCart: false,
       isCheckout: false
     }
   }
 
-  handleChange =(event)=>{
-    this.setState({
-      isCheckout: true 
-    });
+  handleBuyClick = (event) => {
+    const { amount } = this.state
+    if (amount >=1 && amount <= 2) {
+      this.setState({
+        wantsToBuy: true
+      });
+    }
+  }
 
+  handleChange =(event)=>{
     this.setState({
       amount: parseInt(event.target.value)
     });
-
-    this.setState({
-      isCheckout: false
-    })
   }
 
   addToCart = (event) =>{
@@ -78,7 +80,7 @@ render(){
   const { url } = print.image.fields.file;
   const { title, id } = print;
 
-  const { amount, addedToCart, isCheckout } = this.state
+  const { amount, addedToCart, isCheckout, wantsToBuy } = this.state
 
   let price = 35;
   let paypalPrice = 17.5;
@@ -117,8 +119,9 @@ render(){
            /><br/>
          <label>PRICE: {price}$</label>
       </div>
+      
     {
-      amount >= 1 && amount <= 2 ?
+      wantsToBuy ?
       <div className="buttons">
             {
               isCheckout ?
@@ -126,7 +129,8 @@ render(){
                 <PaypalButton
                   total={price}
                   items={item}
-                  id={id} />
+                  id={id} 
+                  onSuccess={this.checkout}/>
             }
             <div className="margin-div"></div>
             {
@@ -137,10 +141,12 @@ render(){
                 <CustomButton>ADD TO CART</CustomButton>
               </span>
             }
-        </div> : null }
+        </div> : 
+        <span onClick={this.handleBuyClick}>
+          <CustomButton>BUY NOW</CustomButton>
+        </span> }
     <style jsx>
       {`
-
         .added{
           text-align: center;
           margin: 10px 0;

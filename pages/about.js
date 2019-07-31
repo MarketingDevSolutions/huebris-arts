@@ -6,7 +6,7 @@ function About(){
     return(
         <Layout title="About | Huebris Arts">
         <div className="maincontent">
-            <img src="../static/huebris.png" alt="Huebris" />
+            <img src="../static/huebris.png" alt="Huebris" className="girl"/>
 
             <h1>
             Huebris (Lauren Rust) 
@@ -25,29 +25,77 @@ function About(){
 
             </div>
 
+            <h4>Social Networks</h4>
+                <div className="row">
+                   <a href="https://www.facebook.com/huebris.arts" target="_blank">
+                      <img src="./../../static/face.png"/>
+                   </a> 
+                    <label>Follow me on Facebook </label>
+                </div>
+                <div className="row">
+                    <a href="https://www.instagram.com/huebris.arts/" target="_blank">
+                      <img src="./../../static/ig.png" />
+                    </a>
+                    <label>Follow me on Instagram </label>
+                </div>
+
             <style jsx>
             {`
 
-            img{
+            .girl{
                 height: 250px;
                 width: 250px;
                 border-radius: 350px;
                 display: block;
                 margin:auto;
                 }
-                img:hover { 
-                    opacity: .89;
-                }
+            .girl:hover { 
+                opacity: .89;
+            }
             p{
                 font-size: 20px;
-                text-aling: justify;
+                text-align: justify;
             }
             h1 {
                 font-size:50px;
                 margin-top: 30px;
                 text-align: center;
                 }
-            `}
+
+            .column-2 {
+              width: 50%;
+            }
+
+            .column-2 h1{
+              text-align: center;
+              font-size:20px;
+            }
+
+            .column-2 .row{
+              justify-content: center;
+              text-align: center;
+            }
+
+            h4{
+                text-align: center;
+            }
+
+            .row{
+              margin-top: 17px;
+              display: flex;
+              justify-content: center;
+            }
+
+            .row img{
+              width: 36px;
+              height: 36px;
+            }
+
+            .row label{
+              margin-left:5px; 
+              margin-bottom: 10px;
+            }
+                        `}
             </style>
 
          </div>

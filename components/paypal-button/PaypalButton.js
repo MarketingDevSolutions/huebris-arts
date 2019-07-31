@@ -13,7 +13,7 @@ class PaypalButton extends React.Component{
 
 	componentDidMount() {
 
-		const { total, items, id } = this.props;
+		const { total, items, id, onSuccess } = this.props;
 
 		paypal.Button.render({
 			env: 'sandbox',
@@ -38,7 +38,7 @@ class PaypalButton extends React.Component{
 			commit: true,
 			onAuthorize: function(data, actions) {
 				return actions.payment.execute().then(function(response) {
-					console.log('Payment succesful!')
+					onSuccess();
 				})
 			},
 			onCancel: function(data){

@@ -8,6 +8,10 @@ import './cart.styles.css'
 class Cart extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showPaypal: false
+    }
   }
 
   handleCloseCart = () => {
@@ -16,6 +20,12 @@ class Cart extends React.Component {
 
   handleClearCart = () =>{
   	this.props.emptyCart();
+  } 
+
+  handleShowClick = () =>{
+    this.setState({
+      showPaypal: true
+    });
   }
 
   handleRemoveItem = (product) => {
@@ -25,6 +35,7 @@ class Cart extends React.Component {
   render() {
 
   	const { cart } = this.props;
+    const { showPaypal } = this.state;
 
   	let totalPrice = 0;
 
@@ -76,13 +87,23 @@ class Cart extends React.Component {
 				  		<hr/>
 			  			<div className="cart-footer">
 				  			<h3>TOTAL: {totalPrice}$</h3>
-				  			<span onClick={this.handleClearCart}>
-				  				<CustomButton>CLEAR CART</CustomButton>
-				  			</span>
-                <PaypalButton
-                  total={totalPrice}
-                  items={paypalCart}
-                  id='cart'/>
+                <div className="buttons">
+  				  			<span onClick={this.handleClearCart}>
+  				  				<CustomButton>CLEAR CART</CustomButton>
+  				  			</span>
+                  {
+                    showPaypal ? 
+                  <PaypalButton
+                    total={totalPrice}
+                    items={paypalCart}
+                    id='cart'
+                    onSuccess={this.handleClearCart}/>
+                    :
+                    <span onClick={this.handleShowClick}>
+                      <CustomButton>CHECKOUT NOW</CustomButton>
+                    </span>
+                  }
+                  </div>
 			  			</div>
 		  			</React.Fragment>
   				 : 
