@@ -12,6 +12,7 @@
   transition: transform 0.15s ease-in-out;
   text-align: center;
   overflow-y: scroll;
+  z-index: 1000;
 }
 
 .Cart--open {

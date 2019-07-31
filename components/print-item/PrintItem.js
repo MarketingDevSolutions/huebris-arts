@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomButton from '../custom-button/CustomButton';
+import PaypalButton from '../paypal-button/PaypalButton';
 import { connect } from 'react-redux'
 
 class PrintItem extends React.Component{
@@ -15,8 +16,16 @@ constructor(){
 
   handleChange =(event)=>{
     this.setState({
+      isCheckout: true 
+    });
+
+    this.setState({
       amount: parseInt(event.target.value)
     });
+
+    this.setState({
+      isCheckout: false
+    })
   }
 
   addToCart = (event) =>{
@@ -67,14 +76,26 @@ constructor(){
 render(){
   const { print } = this.props
   const { url } = print.image.fields.file;
-  const { title } = print;
+  const { title, id } = print;
 
   const { amount, addedToCart, isCheckout } = this.state
 
   let price = 35;
+  let paypalPrice = 17.5;
   if(amount !== 2){
     price = 20;
+    paypalPrice = 20;
   }
+
+  let item = [
+    {
+      name: title,
+      description: 'Huebris Arts Print',
+      quantity: `${amount}`,
+      price: `${paypalPrice}`,
+      currency: "USD"
+    }
+    ]
 
   return <div className='print-item'>
     <div
@@ -102,10 +123,10 @@ render(){
             {
               isCheckout ?
               <h5 className="added">THANK YOU!</h5> : 
-    
-              <span onClick={this.checkout}>
-                <CustomButton>CHECKOUT</CustomButton>
-              </span>
+                <PaypalButton
+                  total={price}
+                  items={item}
+                  id={id} />
             }
             <div className="margin-div"></div>
             {

@@ -9,6 +9,7 @@ class MyApp extends App {
     return (
       <Container>
         <Provider store={reduxStore}>
+          <script src="https://www.paypalobjects.com/api/checkout.js" />
           <Component {...pageProps} />
         </Provider>
       </Container>

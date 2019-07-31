@@ -2,7 +2,7 @@ import React from 'react';
 import CustomButton from './../custom-button/CustomButton';
 import CartItem from './../cart-item/CartItem';
 import { connect } from 'react-redux';
-
+import PaypalButton from '../paypal-button/PaypalButton';
 import './cart.styles.css'
 
 class Cart extends React.Component {
@@ -14,7 +14,7 @@ class Cart extends React.Component {
   	this.props.closeCart();
   }
 
-  handleCheckout = () =>{
+  handleClearCart = () =>{
   	this.props.emptyCart();
   }
 
@@ -39,7 +39,19 @@ class Cart extends React.Component {
   				onRemoveClick={this.handleRemoveItem}/>
   	})
 
-
+    const paypalCart = cart.map((cartItem)=>{
+      let paypalPrice;
+      cartItem.amount === 1 ?  paypalPrice = 20 : paypalPrice = 17.5;
+      return (
+          {
+            name: cartItem.item.title,
+            description: 'Huebris Arts Print',
+            quantity: `${cartItem.amount}`,
+            price: `${paypalPrice}`,
+            currency: "USD"
+          }
+          )
+    })
 
     return (
       <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''} father-vertical`}>
@@ -64,9 +76,13 @@ class Cart extends React.Component {
 				  		<hr/>
 			  			<div className="cart-footer">
 				  			<h3>TOTAL: {totalPrice}$</h3>
-				  			<span onClick={this.handleCheckout}>
-				  				<CustomButton>CHECKOUT</CustomButton>
+				  			<span onClick={this.handleClearCart}>
+				  				<CustomButton>CLEAR CART</CustomButton>
 				  			</span>
+                <PaypalButton
+                  total={totalPrice}
+                  items={paypalCart}
+                  id='cart'/>
 			  			</div>
 		  			</React.Fragment>
   				 : 
