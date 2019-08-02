@@ -1,6 +1,5 @@
 import React from 'react';
 import slug from '../../helpers/slug';
-import { connect } from 'react-redux';
 import { Link } from '../../routes'
 
 const PaintingItem = ({painting}) =>{
@@ -34,8 +33,8 @@ const PaintingItem = ({painting}) =>{
             margin-bottom: 20%;
           }
     .image {
-      width: 100%;
-      height: 95%;
+      width: 90%;
+      height: 80%;
       background-size: cover;
       background-position: center;
       display: block;
