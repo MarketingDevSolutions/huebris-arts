@@ -35,8 +35,8 @@ class Layout extends React.Component{
               loading: true
         })
         var client = contentful.createClient({
-             space: '7k4em0fo2yla',
-             accessToken: 'ovr3_ng-_QThDTpfGsa7YecRCKzQAm3ExfZrcns_Mco'
+             space: 'kf25a7avo9h9',
+             accessToken: 'Ln1PuE867-L4Jrs8Kg0uUO3L35QfFaIwzQktuhjrgfA'
         })
   
         client.getEntries().then(entries =>{
@@ -53,7 +53,7 @@ class Layout extends React.Component{
   
           // Filters prints   
           const prints = entries.items.filter((entry)=> {
-            return entry.sys.contentType.sys.id === 'print';
+            return entry.sys.contentType.sys.id === 'prints';
           }).map((item)=>{
             return item.fields
           })
