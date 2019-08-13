@@ -1,54 +1,40 @@
-import React from 'react';
+import React from 'react'
+import Helmet from 'react-helmet'
+import { Item, ItemFooter } from '../../styles/components/item'
 
-const CanvaItem = ({canva}) =>{
+const CanvaItem = ({ canva }) => {
+  const { url } = canva.image.fields.file
+  const { title } = canva
 
-    const { url } = canva.image.fields.file;
-    const { title } = canva;
-
-  return <div className='canva-item'>
-      <div
-        className='image'
-        style={{
-          backgroundImage: `url(${url})`
-        }}
-      />
-      <div className='canva-footer'>
-        <span className='title'><b>{title}</b></span>
-      </div>
-      <style jsx>
-        {`
-          .canva-item {
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            height: 350px;
-            align-items: center;
-            margin-bottom: 20%;
+  return (
+    <>
+      <Helmet>
+        <script>
+          {`
+          if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+              img.src = img.src;
+              img.loading = 'lazy';
+              img.setAttribute('data-src', img.src);
+            });
+          } else {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+              img.classList.add('lazyload');
+            });
           }
-    .image {
-      width: 100%;
-      height: 95%;
-      background-size: cover;
-      background-position: center;
-      display: block;
-      margin: 5px auto;
-    }
+        `}
+        </script>
+      </Helmet>
+      <Item>
+        <img src={url} className='image' alt={title} />
+        <ItemFooter>
+          <h2><b>{title}</b></h2>
+        </ItemFooter>
+      </Item>
+    </>
+  )
+}
 
-    .canva-footer {
-      width: 100%;
-      height: 5%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 18px;
-
-    }
-      .title {
-        width: 80%;
-        margin-bottom: 15px;
-      }
-  `}
-      </style>
-      </div>
-    }
-
-export default CanvaItem;
+export default CanvaItem

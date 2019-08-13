@@ -1,19 +1,14 @@
-import React from 'react';
+import React from 'react'
+import CanvaItem from '../canva-item/CanvaItem'
+import { ItemContainer } from '../../styles/components/item'
 
-import CanvaItem from '../canva-item/CanvaItem';
+const CanvaPreview = ({ canvases }) => (
+  <ItemContainer>
+    {canvases
+      .map((canva) => (
+        <CanvaItem key={canva.id + canva.title} canva={canva} />
+      ))}
+  </ItemContainer>
+)
 
-import './canva-preview.styles.css';
-
-const CanvaPreview = ({canvases}) => {
-
-  return <div className='collection-preview'>
-    <div className='preview'>
-      {canvases
-        .map((canva) => (
-          <CanvaItem key={canva.id} canva={canva} />
-        ))}
-    </div>
-  </div>
-}
-
-export default CanvaPreview;
+export default CanvaPreview

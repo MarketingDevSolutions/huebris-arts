@@ -3,6 +3,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import Helmet from 'react-helmet'
 import withReduxStore from '../lib/with-redux-store'
+import '../styles/styles.css'
 
 class MyApp extends App {
   render () {

@@ -1,15 +1,13 @@
 import React from 'react'
 import PrintItem from '../print-item/PrintItem'
-import './print-preview.styles.css'
+import { ItemContainer } from '../../styles/components/item'
 
 const PrintPreview = ({ prints }) => (
-  <div className='collection-preview'>
-    <div className='preview'>
-      {prints.map((print) => (
-        <PrintItem key={print.id} print={print} />
-      ))}
-    </div>
-  </div>
+  <ItemContainer>
+    {prints.map(print => (
+      <PrintItem key={print.id + print.title} print={print} />
+    ))}
+  </ItemContainer>
 )
 
 export default PrintPreview

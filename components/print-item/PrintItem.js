@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import Helmet from 'react-helmet'
 import CustomButton from '../custom-button/CustomButton'
 import PaypalButton from '../paypal-button/PaypalButton'
-import { connect } from 'react-redux'
 
 function PrintItem ({ cart, print, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -75,51 +76,72 @@ function PrintItem ({ cart, print, addItemToCart }) {
     }
   ]
 
-  return <div className='print-item'>
-    <img src={url} className='image' alt={title} />
-    <h2 className='title'><b>{title}</b></h2>
-    <p className='price'>PRICE: <b>{price}$</b></p>
-
-    <div className='amount-div'>
-      <label>AMOUNT:</label>
-      <input
-        className='amount-input'
-        type='number'
-        name='amount'
-        min='1'
-        max='2'
-        onChange={handleChange}
-      /><br />
-    </div>
-
-    {
-      wantsToBuy
-        ? <div className='buttons'>
-          {
-            isCheckout
-              ? <h5 className='added'>THANK YOU!</h5>
-              : <PaypalButton
-                total={price}
-                items={item}
-                id={id}
-                onSuccess={checkout}
-              />
+  return (
+    <>
+      <Helmet>
+        <script>
+          {`
+          if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+              img.src = img.src;
+              img.loading = 'lazy';
+              img.setAttribute('data-src', img.src);
+            });
+          } else {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+              img.classList.add('lazyload');
+            });
           }
-          <div className='margin-div' />
-          {
-            addedToCart
-              ? <h5 className='added'>ADDED TO CART</h5>
+        `}
+        </script>
+      </Helmet>
+      <div className='print-item'>
+        <img src={url} className='image' alt={title} />
+        <h2 className='title'><b>{title}</b></h2>
+        <p className='price'>PRICE: <b>{price}$</b></p>
 
-              : <span onClick={addToCart}>
-                <CustomButton>ADD TO CART</CustomButton>
-              </span>
-          }
+        <div className='amount-div'>
+          <label>AMOUNT:</label>
+          <input
+            className='amount-input'
+            type='number'
+            name='amount'
+            min='1'
+            max='2'
+            onChange={handleChange}
+          /><br />
         </div>
-        : <span onClick={handleBuyClick}>
-          <CustomButton>BUY NOW</CustomButton>
-        </span> }
-    <style jsx>
-      {`
+
+        {
+          wantsToBuy
+            ? <div className='buttons'>
+              {
+                isCheckout
+                  ? <h5 className='added'>THANK YOU!</h5>
+                  : <PaypalButton
+                    total={price}
+                    items={item}
+                    id={id}
+                    onSuccess={checkout}
+                  />
+              }
+              <div className='margin-div' />
+              {
+                addedToCart
+                  ? <h5 className='added'>ADDED TO CART</h5>
+
+                  : <span onClick={addToCart}>
+                    <CustomButton>ADD TO CART</CustomButton>
+                  </span>
+              }
+            </div>
+            : <span onClick={handleBuyClick}>
+              <CustomButton>BUY NOW</CustomButton>
+            </span> }
+        <style jsx>
+          {`
         .added{
           text-align: center;
           margin: 10px 0;
@@ -192,8 +214,10 @@ function PrintItem ({ cart, print, addItemToCart }) {
           font-size: 18px;
         }
       `}
-    </style>
-  </div>
+        </style>
+      </div>
+    </>
+  )
 }
 
 function mapStateToProps (state) {
