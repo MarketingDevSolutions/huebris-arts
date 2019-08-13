@@ -1,17 +1,16 @@
-import React from 'react';
-import slug from '../../helpers/slug';
+import React from 'react'
+import slug from '../../helpers/slug'
 import { Link } from '../../routes'
 
-const PaintingItem = ({painting}) =>{
+const PaintingItem = ({ painting }) => {
+  const { url } = painting.picture.fields.file
+  const { title, measurements, id } = painting
 
-    const { url } = painting.picture.fields.file;
-    const { title, measurements, id } = painting;
-
-  return <Link route="painting" params={{
-            slug: slug(title),
-            id
-          }} prefetch>
-           <a className='painting-item'>
+  return <Link route='painting' params={{
+    slug: slug(title),
+    id
+  }} prefetch>
+    <a className='painting-item'>
       <div
         className='image'
         style={{
@@ -60,8 +59,8 @@ const PaintingItem = ({painting}) =>{
       }
   `}
       </style>
-      </a>
-    </Link>
-    }
+    </a>
+  </Link>
+}
 
-export default PaintingItem;
+export default PaintingItem

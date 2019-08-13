@@ -1,23 +1,23 @@
+import React from 'react'
 import { connect } from 'react-redux'
 import Layout from './../components/layout/Layout'
 import PrintPreview from './../components/print-preview/PrintPreview'
 
-class Store extends React.Component{
+class Store extends React.Component {
+  render () {
+    const { prints } = this.props
 
-	render(){
-
-		const { prints } = this.props;
-		console.log(prints)
-		return(
-		<Layout title='Store | Huebris Arts'>
-			<h1>STORE</h1>
-			<h2 className='title'>PRINTS</h2>
-		    <PrintPreview prints={prints}/>
-		</Layout>)
-	}
+    return (
+      <Layout title='Store | Huebris Arts'>
+        <h1>STORE</h1>
+        <h2 className='title'>PRINTS</h2>
+        <PrintPreview prints={prints} />
+      </Layout>
+    )
+  }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   const { prints } = state
   return { prints }
 }
