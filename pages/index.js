@@ -2,6 +2,7 @@ import { Link } from '../routes'
 
 import { connect } from 'react-redux'
 import Layout from './../components/layout/Layout'
+import PaintingPreview from './../components/painting-preview/PaintingPreview'
 
 class Gallery extends React.Component{
 
@@ -11,23 +12,18 @@ class Gallery extends React.Component{
 
 	render(){
 
-		const { paintings, smallCanvases } = this.props
+		const { paintings } = this.props
 		return(
 			<Layout title='Huebris Arts'>		
 			<div> 
 				<h1 className="text-center">HUEBRIS ARTS</h1>
-				<h1 className="text-center">SLIDER</h1>
-				<h1 className="text-center">WHAT IS HUEBRIS ARTS?</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-				Ullam, architecto labore minima rem, totam velit beatae commodi voluptate quae 
-				consequatur eveniet id non, explicabo veritatis! 
-				Dolores veritatis in praesentium omnis. 
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, iure. 
-				Earum ipsum, eveniet non, natus, omnis vel fugit nisi blanditiis atque rerum esse tempora 
-				delectus dolorem reiciendis impedit, molestias accusamus. Lorem ipsum dolor sit amet, 
-				consectetur adipisicing elit. Neque officiis asperiores excepturi modi totam accusamus mollitia 
-				facere repellat adipisci et. Modi voluptas praesentium dicta quod eum at ab dolorem. Sequi.</p>
-				<h1 className="text-center">PREVIEW</h1>
+				<h3 className="text-center">SLIDER</h3>
+				<h4 className="description">Welcome to Huebris Arts, where you can find original abstract artwork, 
+				acrylic and watercolor paintings, hand drawn portraits, prints, merchandise 
+				and request custom-made art pieces designed to bring your vision to life by 
+				artist Lauren “Huebris” Rust.</h4>
+				<h3 className="text-center">PREVIEW</h3>
+				{ <PaintingPreview paintings={paintings}/>}
 			</div>
 		</Layout>)
 	}
@@ -36,8 +32,8 @@ class Gallery extends React.Component{
 }
 
 function mapStateToProps(state) {
-  const { paintings, smallCanvases } = state
-  return { paintings, smallCanvases }
+  const { paintings } = state
+  return { paintings: paintings.filter((painting, i)=> i<5) }
 }
 
 export default connect(mapStateToProps)(Gallery);

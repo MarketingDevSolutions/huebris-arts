@@ -102,6 +102,13 @@ class Layout extends React.Component{
           background: white;
         }
 
+        .description{
+          font-size: 24px;
+          text-align: center;
+          magin: 0 15vw;
+          padding: 0 15vw;
+        }
+
         .text-center{
           text-align: center;
         }

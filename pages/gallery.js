@@ -15,7 +15,7 @@ class Gallery extends React.Component{
 
 		const { paintings, smallCanvases } = this.props
 		return(
-			<Layout title='Huebris Arts'>		
+			<Layout title='Gallery | Huebris Arts'>		
 			<div> 
 				<h2 className='title'>PAINTINGS</h2>
 				<PaintingPreview paintings={paintings}/>
