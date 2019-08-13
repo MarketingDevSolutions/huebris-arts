@@ -1,148 +1,121 @@
-import React from 'react';
-import CustomButton from '../custom-button/CustomButton';
-import PaypalButton from '../paypal-button/PaypalButton';
+import React, { useState, useEffect } from 'react'
+import CustomButton from '../custom-button/CustomButton'
+import PaypalButton from '../paypal-button/PaypalButton'
 import { connect } from 'react-redux'
 
-class PrintItem extends React.Component{
-constructor(){
-    super();
+function PrintItem ({ cart, print, addItemToCart }) {
+  const [amount, setAmount] = useState(0)
+  const [wantsToBuy, setWantsToBuy] = useState(false)
+  const [addedToCart, setAddedToCart] = useState(false)
+  const [isCheckout, setIsCheckout] = useState(false)
 
-    this.state = {
-      amount: 0,
-      wantsToBuy: false,
-      addedToCart: false,
-      isCheckout: false
-    }
-  }
-
-  handleBuyClick = (event) => {
-    const { amount } = this.state
-    if (amount >=1 && amount <= 2) {
-      this.setState({
-        wantsToBuy: true
-      });
-    }
-  }
-
-  handleChange =(event)=>{
-    this.setState({
-      amount: parseInt(event.target.value)
-    });
-  }
-
-  addToCart = (event) =>{
-    const { title, id } = this.props.print
-    const { amount } = this.state
-
-    let price = 35;
-    if(amount != 2){
-      price = 20;
-    };
-
-    this.props.addItemToCart({
-      type: 'print',
-      item: this.props.print,
-      amount,
-      price
-    });
-
-    this.setState({
-      addedToCart: true
-    });
-  }
-
-  checkout = (event) =>{
-    console.log('Bought');
-
-    this.setState({
-      isCheckout: true
-    });
-  }
-
-  componentDidMount() {
-    const { cart, print } = this.props;
+  useEffect(() => {
+    /* eslint-disable no-unused-vars */
     let found = false
 
-    cart.forEach((element)=>{
-      if (element.item.id === print.id){
-        found = true;
+    cart.forEach((element) => {
+      if (element.item.id === print.id) {
+        found = true
         return
       }
 
-      this.setState({
-          addedToCart: found 
-        });
+      setAddedToCart(true)
     })
+  }, [])
+
+  const handleBuyClick = e => {
+    if (amount >= 1 && amount <= 2) {
+      setWantsToBuy(true)
+    }
   }
 
-render(){
-  const { print } = this.props
-  const { url } = print.image.fields.file;
-  const { title, id } = print;
-
-  const { amount, addedToCart, isCheckout, wantsToBuy } = this.state
-
-  let price = 35;
-  let paypalPrice = 17.5;
-  if(amount !== 2){
-    price = 20;
-    paypalPrice = 20;
+  const handleChange = e => {
+    setAmount(parseInt(e.target.value))
   }
 
-  let item = [
+  const addToCart = e => {
+    let price = 35
+    if (amount !== 2) {
+      price = 20
+    };
+
+    addItemToCart({
+      type: 'print',
+      item: print,
+      amount,
+      price
+    })
+
+    setAddedToCart(true)
+  }
+
+  const checkout = (event) => {
+    console.log('Bought')
+
+    setIsCheckout(true)
+  }
+
+  const { url } = print.image.fields.file
+  const { title, id } = print
+
+  let price = 35
+  let paypalPrice = 17.5
+  if (amount !== 2) {
+    price = 20
+    paypalPrice = 20
+  }
+
+  const item = [
     {
       name: title,
       description: 'Huebris Arts Print',
       quantity: `${amount}`,
       price: `${paypalPrice}`,
-      currency: "USD"
+      currency: 'USD'
     }
-    ]
+  ]
 
   return <div className='print-item'>
-    <div
-      className='image'
-      style={{
-        backgroundImage: `url(${url})`
-      }}
-    />
-      <span className='title'><b>{title}</b></span>
-      <div className="amount-div">
-         <label>AMOUNT:</label>
-         <input 
-           className="amount-input" 
-           type="number" 
-           name="amount" 
-           min="1" 
-           max="2"
-           onChange={this.handleChange}
-           /><br/>
-         <label>PRICE: {price}$</label>
-      </div>
-      
+    <img src={url} className='image' alt={title} />
+    <h2 className='title'><b>{title}</b></h2>
+    <p className='price'>PRICE: <b>{price}$</b></p>
+
+    <div className='amount-div'>
+      <label>AMOUNT:</label>
+      <input
+        className='amount-input'
+        type='number'
+        name='amount'
+        min='1'
+        max='2'
+        onChange={handleChange}
+      /><br />
+    </div>
+
     {
-      wantsToBuy ?
-      <div className="buttons">
-            {
-              isCheckout ?
-              <h5 className="added">THANK YOU!</h5> : 
-                <PaypalButton
-                  total={price}
-                  items={item}
-                  id={id} 
-                  onSuccess={this.checkout}/>
-            }
-            <div className="margin-div"></div>
-            {
-              addedToCart ?
-              <h5 className="added">ADDED TO CART</h5> : 
-    
-              <span onClick={this.addToCart}>
+      wantsToBuy
+        ? <div className='buttons'>
+          {
+            isCheckout
+              ? <h5 className='added'>THANK YOU!</h5>
+              : <PaypalButton
+                total={price}
+                items={item}
+                id={id}
+                onSuccess={checkout}
+              />
+          }
+          <div className='margin-div' />
+          {
+            addedToCart
+              ? <h5 className='added'>ADDED TO CART</h5>
+
+              : <span onClick={addToCart}>
                 <CustomButton>ADD TO CART</CustomButton>
               </span>
-            }
-        </div> : 
-        <span onClick={this.handleBuyClick}>
+          }
+        </div>
+        : <span onClick={handleBuyClick}>
           <CustomButton>BUY NOW</CustomButton>
         </span> }
     <style jsx>
@@ -153,22 +126,31 @@ render(){
         }
         .amount-div{
           text-align: center;
+          font-size: 18px;
         }
         .amount-div label{
           margin-right: 5px;
         }
         .amount-input{
           margin-right: 5px;
-          width:20%;
+          width: 37.5px;
+          border: 1px solid rgba(0, 0, 0, 0.30);
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 16px;
         }
+        .amount-input:focus {
+          outline: 0;
+        }
+
         .print-item {
-          width: 90%;
+          max-width: 300px;
+          width: 100%;
           display: flex;
           flex-direction: column;
-          height: 500px;
+          height: auto;
           align-items: center;
-          margin-bottom: 20%;
-          margin-right: 10%;
+          margin: 16px;
         }
 
         .margin-div{
@@ -181,41 +163,46 @@ render(){
           flex-direction: column;
         }
 
-  .image {
-    width: 100%;
-    height: 95%;
-    background-size: cover;
-    background-position: center;
-    display: block;
-    margin: 5px auto;
-  }
+        .image {
+          max-width: 500px;
+          max-height: 250px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
 
-  .print-footer {
-    width: 100%;
-    height: 5%;
-    display: block;
-    justify-content: space-between;
+        .print-footer {
+          width: 100%;
+          height: 5%;
+          display: block;
+          justify-content: space-between;
 
-  }
-    .title {
-      font-size: 18px;
-      text-align: center;
-      width: 100%;
-      margin-bottom: 15px;
-    }
-`}
+        }
+
+        .title {
+          font-size: 24px;
+          text-align: center;
+          width: 100%;
+          margin-top: 4px;
+          margin-bottom: 8px;
+        }
+
+        .price {
+          margin: 0;
+          font-size: 18px;
+        }
+      `}
     </style>
   </div>
+}
 
-}
-}
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   const { cart } = state
   return { cart }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     addItemToCart: (item) => dispatch({
       type: 'ADD_ITEM_TO_CART',
       item
@@ -223,4 +210,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrintItem);
+export default connect(mapStateToProps, mapDispatchToProps)(PrintItem)
