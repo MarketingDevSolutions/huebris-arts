@@ -11,7 +11,7 @@ export const Item = styled.a`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 100%;
   align-items: center;
   margin: 8px 16px;
   border-radius: 8px;
@@ -26,9 +26,8 @@ export const Item = styled.a`
 
   & img {
     max-width: 500px;
-    max-height: 250px;
+    height: 200px;
     width: 100%;
-    height: 100%;
     object-fit: cover;
   }
 `
@@ -40,6 +39,7 @@ export const ItemFooter = styled.div`
   font-size: 18px;
   align-items: center;
   padding: 8px 0;
+  text-align: center;
 
   & h2 {
     margin: 0;
