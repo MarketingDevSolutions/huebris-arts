@@ -1,0 +1,311 @@
+/* NProgress */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  font-family: 'Open Sans Condensed';
+  padding: 20px 60px;
+  background: white;
+}
+
+.text-center{
+  text-align: center;
+}
+
+video{
+  margin: 0 7.5%;
+  width: 85%;
+  height: 75vh;
+  object-fit: fill;
+}
+
+a {
+  text-decoration: none!important;
+  color: black!important;
+}
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #000;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #000, 0 0 5px #000;
+  opacity: 1.0;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+      -ms-transform: rotate(3deg) translate(0px, -4px);
+          transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #000;
+  border-left-color: #000;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+          animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Form Inputs */
+.d-form {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.d-label-outline {
+  --pure-material-safari-helper1: rgb(var(--pure-material-primary-rgb, 0, 0, 0));
+  position: relative;
+  display: inline-block;
+  font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.d-label-outline input,
+.d-label-outline textarea {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  margin-top: 6px;
+  border: solid 1px;
+  border-color: rgba(0, 0, 0, 0.3);
+  border-top-color: transparent;
+  border-radius: 4px;
+  padding: 15px 13px 15px;
+  width: 100%;
+  height: inherit;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  caret-color: #000;
+  -webkit-transition: border 0.2s, -webkit-box-shadow 0.2s;
+  transition: border 0.2s, -webkit-box-shadow 0.2s;
+  transition: border 0.2s, box-shadow 0.2s;
+  transition: border 0.2s, box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+
+.d-label-outline input + span,
+.d-label-outline textarea + span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-height: 100%;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 75%;
+  line-height: 15px;
+  font-weight: 600;
+  cursor: text;
+  -webkit-transition: color 0.2s, font-size 0.2s, line-height 0.2s;
+  transition: color 0.2s, font-size 0.2s, line-height 0.2s;
+}
+
+.d-label-outline input + span::before,
+.d-label-outline input + span::after,
+.d-label-outline textarea + span::before,
+.d-label-outline textarea + span::after {
+  content: "";
+  display: block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: 6px;
+  border-top: solid 1px;
+  border-top-color: rgba(0, 0, 0, 0.3);
+  min-width: 10px;
+  height: 3px;
+  pointer-events: none;
+  -webkit-box-shadow: inset 0 1px transparent;
+          box-shadow: inset 0 1px transparent;
+  -webkit-transition: border-color 0.2s, -webkit-box-shadow 0.2s;
+  transition: border-color 0.2s, -webkit-box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+
+.d-label-outline input + span::before,
+.d-label-outline textarea + span::before {
+  margin-right: 4px;
+  border-left: solid 1px transparent;
+  border-radius: 4px 0;
+}
+
+.d-label-outline > input + span::after,
+.d-label-outline > textarea + span::after {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin-left: 4px;
+  border-right: solid 1px transparent;
+  border-radius: 0 4px;
+}
+
+.d-label-outline:hover > input,
+.d-label-outline:hover > textarea {
+  border-color: rgba(0, 0, 0, 0.87);
+  border-top-color: transparent;
+}
+
+.d-label-outline:hover > input + span::before,
+.d-label-outline:hover > textarea + span::before,
+.d-label-outline:hover > input + span::after,
+.d-label-outline:hover > textarea + span::after {
+  border-top-color: rgba(0, 0, 0, 0.87);
+}
+
+.d-label-outline:hover > input:not(:focus):placeholder-shown,
+.d-label-outline:hover > textarea:not(:focus):placeholder-shown {
+  border-color: rgba(0, 0, 0, 0.87);
+}
+
+/* Placeholder-shown */
+.d-label-outline > input:not(:focus):placeholder-shown,
+.d-label-outline > textarea:not(:focus):placeholder-shown {
+  border-top-color: rgba(0, 0, 0, 0.3);
+}
+
+.d-label-outline > input:not(:focus):placeholder-shown + span,
+.d-label-outline > textarea:not(:focus):placeholder-shown + span {
+  font-size: inherit;
+  line-height: 68px;
+}
+
+.d-label-outline > input:not(:focus):placeholder-shown + span::before,
+.d-label-outline > textarea:not(:focus):placeholder-shown + span::before,
+.d-label-outline > input:not(:focus):placeholder-shown + span::after,
+.d-label-outline > textarea:not(:focus):placeholder-shown + span::after {
+  border-top-color: transparent;
+}
+
+/* Focus */
+.d-label-outline > input:focus,
+.d-label-outline > textarea:focus {
+  border-color: #000;
+  border-top-color: transparent;
+  -webkit-box-shadow: inset 1px 0 var(--pure-material-safari-helper1), inset -1px 0 var(--pure-material-safari-helper1), inset 0 -1px var(--pure-material-safari-helper1);
+          box-shadow: inset 1px 0 var(--pure-material-safari-helper1), inset -1px 0 var(--pure-material-safari-helper1), inset 0 -1px var(--pure-material-safari-helper1);
+  outline: none;
+}
+
+.d-label-outline > input:focus + span,
+.d-label-outline > textarea:focus + span {
+  color: #000;
+}
+
+.d-label-outline > input:focus + span::before,
+.d-label-outline > input:focus + span::after,
+.d-label-outline > textarea:focus + span::before,
+.d-label-outline > textarea:focus + span::after {
+  border-top-color: var(--pure-material-safari-helper1) !important;
+  -webkit-box-shadow: inset 0 1px var(--pure-material-safari-helper1);
+          box-shadow: inset 0 1px var(--pure-material-safari-helper1);
+}
+
+/* Disabled */
+.d-label-outline > input:disabled,
+.d-label-outline > input:disabled + span,
+.d-label-outline > textarea:disabled,
+.d-label-outline > textarea:disabled + span {
+  border-color: rgba(0, 0, 0, 0.38) !important;
+  border-top-color: transparent !important;
+  color: rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+}
+
+.d-label-outline > input:disabled + span::before,
+.d-label-outline > input:disabled + span::after,
+.d-label-outline > textarea:disabled + span::before,
+.d-label-outline > textarea:disabled + span::after {
+  border-top-color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.d-label-outline > input:disabled:placeholder-shown,
+.d-label-outline > input:disabled:placeholder-shown + span,
+.d-label-outline > textarea:disabled:placeholder-shown,
+.d-label-outline > textarea:disabled:placeholder-shown + span {
+  border-top-color: rgba(0, 0, 0, 0.38) !important;
+}
+
+.d-label-outline > input:disabled:placeholder-shown + span::before,
+.d-label-outline > input:disabled:placeholder-shown + span::after,
+.d-label-outline > textarea:disabled:placeholder-shown + span::before,
+.d-label-outline > textarea:disabled:placeholder-shown + span::after {
+  border-top-color: transparent !important;
+}
+
+/* Faster transition in Safari for less noticable fractional font-size issue */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .d-label-outline > input,
+    .d-label-outline > input + span,
+    .d-label-outline > textarea,
+    .d-label-outline > textarea + span,
+    .d-label-outline > input + span::before,
+    .d-label-outline > input + span::after,
+    .d-label-outline > textarea + span::before,
+    .d-label-outline > textarea + span::after {
+      -webkit-transition-duration: 0.1s;
+              transition-duration: 0.1s;
+    }
+  }
+}

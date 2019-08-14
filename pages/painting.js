@@ -1,41 +1,36 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Layout from './../components/layout/Layout';
-import CustomButton from './../components/custom-button/CustomButton';
-import Link from 'next/link';
+import React from 'react'
+import { connect } from 'react-redux'
+import Layout from './../components/layout/Layout'
+import Link from 'next/link'
 
-class Painting extends React.Component{
+class Painting extends React.Component {
+  static async getInitialProps ({ query }) {
+    const { id } = query
 
-  static async getInitialProps({query}){
-
-    const { id } = query;
-    
-    return { id };
-
+    return { id }
   }
 
-  render(){
+  render () {
+    const { storePaintings, id } = this.props
 
-    const { storePaintings, id} = this.props;
-
-    const painting = storePaintings.filter((item)=>{
+    const painting = storePaintings.filter((item) => {
       return item.id === parseInt(id)
-    })[0];
+    })[0]
 
-    const { url } = painting.picture.fields.file;
+    const { url } = painting.picture.fields.file
     const { title, measurements, description, material } = painting
 
     return (<Layout title={`${title} | Huebris Arts`}><div className='painting-modal'>
-              <img src={url} alt={title} className="image"/>
-                <h3 className="label"><b>TITLE: </b>{title}</h3>
-                <h3 className="label"><b>MATERIAL: </b>{material}</h3>
-                <h3 className="label"><b>DESCRIPTION: </b>{description}</h3>
-                <h3 className="label"><b>MEASUREMENTS: </b>{measurements}</h3>
-                    <Link href="/">
-                      <span className="return">
-                        <b>RETURN TO HOME</b>
-                      </span>
-                    </Link>
+      <img src={url} alt={title} className='image' />
+      <h3 className='label'><b>TITLE: </b>{title}</h3>
+      <h3 className='label'><b>MATERIAL: </b>{material}</h3>
+      <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
+      <h3 className='label'><b>MEASUREMENTS: </b>{measurements}</h3>
+      <Link href='/'>
+        <span className='return'>
+          <b>RETURN TO HOME</b>
+        </span>
+      </Link>
 
       <style jsx>
         {`
@@ -79,9 +74,9 @@ class Painting extends React.Component{
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   const { paintings } = state
   return { storePaintings: paintings }
 }
 
-export default connect(mapStateToProps, null)(Painting);
+export default connect(mapStateToProps, null)(Painting)
