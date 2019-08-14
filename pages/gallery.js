@@ -8,7 +8,6 @@ const Gallery = ({ paintings, smallCanvases }) => (
   <Layout title='Gallery | Huebris Arts'>
     <h2 className='title'>PAINTINGS</h2>
     <PaintingPreview paintings={paintings} />
-    <h2 className='title'>CANVASES</h2>
     <CanvaPreview canvases={smallCanvases} />
   </Layout>
 )

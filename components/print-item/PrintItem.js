@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import CustomButton from '../custom-button/CustomButton'
 import PaypalButton from '../paypal-button/PaypalButton'
+import { Select } from 'react-materialize';
 
 function PrintItem ({ cart, print, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -100,18 +101,18 @@ function PrintItem ({ cart, print, addItemToCart }) {
       <div className='print-item'>
         <img src={url} className='image' alt={title} />
         <h2 className='title'><b>{title}</b></h2>
-        <p className='price'>PRICE: <b>{price}$</b></p>
+        <p className='price'>PRICE: <b>{`${price}.00`}$</b></p>
 
-        <div className='amount-div'>
+        <div className='amount-div select_mate'>
           <label>AMOUNT:</label>
-          <input
-            className='amount-input'
-            type='number'
-            name='amount'
-            min='1'
-            max='2'
-            onChange={handleChange}
-          /><br />
+          <Select value={amount} onChange={handleChange}>
+            <option value="" disabled>
+            Choose amount
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </Select>
+          <br/>
         </div>
 
         {

@@ -11,6 +11,102 @@ body {
   text-align: center;
 }
 
+.layout-hr{
+  width: 90vw;
+  margin: 5vh 0;
+}
+
+.icon_select_mate {
+  position: absolute;
+  top: 20px;
+  right: 2%;
+  font-size: 16px;
+  height: 22px;
+  -webkit-transition: all 275ms;
+  transition: all 275ms;
+}
+
+.select_mate {
+  margin-top: 3px;
+  position: relative;
+  float: left;
+  min-width: 100%;
+  width: 100%;
+  min-height: 56px;
+  color: #777;
+  font-weight: 300;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 2px 10px -2px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 2px 10px -2px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  -webkit-transition: all 375ms ease-in-out;
+  transition: all 375ms ease-in-out;
+}
+.select_mate select {
+  position: absolute;
+  overflow: hidden;
+  height: 0px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.cont_list_select_mate {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.cont_select_int {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 999;
+  overflow: hidden;
+  height: 0px;
+  width: 100%;
+  background-color: #fff;
+  padding: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  border-radius: 0px 0px 3px 3px;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -webkit-transition: all 375ms ease-in-out;
+  transition: all 375ms ease-in-out;
+}
+.cont_select_int li {
+  position: relative;
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  list-style-type: none;
+  padding: 15px 5%;
+  margin: 0px;
+  -webkit-transition: all 275ms ease-in-out;
+  transition: all 275ms ease-in-out;
+  display: block;
+  cursor: pointer;
+}
+.cont_select_int li:last-child {
+  border-radius: 3px;
+  border-bottom: 0px;
+}
+.cont_select_int li:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+.cont_select_int .active {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.option_select {
+  padding: 20px 5%;
+  width: 100%;
+  display: block;
+  margin: 0px;
+  cursor: pointer;
+}
+
 video{
   margin: 0 7.5%;
   width: 85%;

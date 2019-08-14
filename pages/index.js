@@ -13,7 +13,7 @@ function Index (props) {
         <h1 style={{ textAlign: 'center' }}>HUEBRIS ARTS</h1>
         <h3 style={{ textAlign: 'center' }}>SLIDER</h3>
         <Description>Welcome to Huebris Arts, where you can find original abstract artwork, acrylic and watercolor paintings, hand drawn portraits, prints, merchandise and request custom-made art pieces designed to bring your vision to life by artist Lauren “Huebris” Rust.</Description>
-        <h3 style={{ textAlign: 'center' }}>PREVIEW</h3>
+        <h3 style={{ textAlign: 'center' }}>MY LATEST WORKS</h3>
         <Container>
           <PaintingPreview paintings={paintings} />
         </Container>

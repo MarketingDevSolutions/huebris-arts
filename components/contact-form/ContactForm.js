@@ -81,7 +81,7 @@ export default function ContactForm () {
         ? <Modal onClose={handleCloseError}>
           <h2>{error}</h2>
         </Modal> : null }
-      <h2>Want a personalized painting or give a suggestion?</h2>
+      <h2>Want to give a suggestion or order a personalized painting? </h2>
       <form onSubmit={handleSubmit}>
         <FormInput
           name='name'
