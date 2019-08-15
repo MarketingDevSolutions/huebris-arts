@@ -21,7 +21,7 @@ app.prepare()
 
       // handle GET request to /service-worker.js
       if (pathname === '/service-worker.js') {
-        const filePath = join(__dirname, '.next', pathname)
+        const filePath = join(__dirname, 'build', pathname)
 
         app.serveStatic(req, res, filePath)
       } else {
