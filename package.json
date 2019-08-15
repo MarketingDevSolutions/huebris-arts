@@ -17,6 +17,8 @@
     "bootstrap": "^4.3.1",
     "contentful": "^7.8.2",
     "next": "^9.0.2",
+    "next-compose-plugins": "^2.2.0",
+    "next-offline": "^4.0.3",
     "next-routes": "^1.4.2",
     "nprogress": "^0.2.0",
     "react": "^16.8.6",

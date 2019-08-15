@@ -107,39 +107,38 @@ function PrintItem ({ cart, print, addItemToCart }) {
         {price && price ? (
           <Price>
             <Select onChange={handleChange}>
-              <option selected disabled value='0'>Choose amount</option>
+              <option defaultValue disabled value='0'>Choose amount</option>
               <option value='1'>1</option>
               <option value='2'>2</option>
             </Select>
           </Price>
         ) : ''}
 
-        {
-          wantsToBuy
-            ? <div className='buttons'>
-              {
-                isCheckout
-                  ? <h5 className='added'>THANK YOU!</h5>
-                  : <PaypalButton
-                    total={price}
-                    items={item}
-                    id={id}
-                    onSuccess={checkout}
-                  />
-              }
-              <div className='margin-div' />
-              {
-                addedToCart
-                  ? <h5 className='added'>ADDED TO CART</h5>
+        {amount !== 0 ? wantsToBuy
+          ? <div className='buttons'>
+            {
+              isCheckout
+                ? <h5 className='added'>THANK YOU!</h5>
+                : <PaypalButton
+                  total={price}
+                  items={item}
+                  id={id}
+                  onSuccess={checkout}
+                />
+            }
+            <div className='margin-div' />
+            {
+              addedToCart
+                ? <h5 className='added'>ADDED TO CART</h5>
 
-                  : <span onClick={addToCart}>
-                    <CustomButton>ADD TO CART</CustomButton>
-                  </span>
-              }
-            </div>
-            : <span onClick={handleBuyClick}>
-              <CustomButton>BUY NOW</CustomButton>
-            </span> }
+                : <span onClick={addToCart}>
+                  <CustomButton>ADD TO CART</CustomButton>
+                </span>
+            }
+          </div>
+          : <span onClick={handleBuyClick}>
+            <CustomButton>BUY NOW</CustomButton>
+          </span> : ''}
         <style jsx>
           {`
         .added{
