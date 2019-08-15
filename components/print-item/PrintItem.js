@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
+import { Select } from 'react-materialize'
 import CustomButton from '../custom-button/CustomButton'
 import PaypalButton from '../paypal-button/PaypalButton'
-import { Select } from 'react-materialize';
+import { Price } from '../../styles/components/product'
 
 function PrintItem ({ cart, print, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -103,17 +104,15 @@ function PrintItem ({ cart, print, addItemToCart }) {
         <h2 className='title'><b>{title}</b></h2>
         <p className='price'>PRICE: <b>{`${price}.00`}$</b></p>
 
-        <div className='amount-div select_mate'>
-          <label>AMOUNT:</label>
-          <Select value={amount} onChange={handleChange}>
-            <option value="" disabled>
-            Choose amount
-            </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </Select>
-          <br/>
-        </div>
+        {price && price ? (
+          <Price>
+            <Select onChange={handleChange}>
+              <option selected disabled value='0'>Choose amount</option>
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+            </Select>
+          </Price>
+        ) : ''}
 
         {
           wantsToBuy
