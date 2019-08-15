@@ -1,24 +1,25 @@
-const withCSS = require('@zeit/next-css')
-const withOffline = require('next-offline')
+const css = require('@zeit/next-css')
 const withPlugins = require('next-compose-plugins')
-const path = require('path')
-
-const config = {
-  // Service Worker
-  generateSw: false,
-  devSwSrc: path.join(__dirname, './utils/serviceWorker/sw.js'),
-  workboxOpts: {
-    swDest: './service-worker.js',
-    swSrc: path.join(__dirname, './utils/serviceWorker/sw.js'),
-    globPatterns: ['**/*.{ico,html,js,json}'],
-    globDirectory: './_next/static'
-  }
-}
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 module.exports = withPlugins(
-  [
-    withOffline(config),
-    withCSS
-  ],
-  { distDir: 'build' }
+  [css],
+  {
+    webpack: (config) => {
+      config.plugins.push(
+        new SWPrecacheWebpackPlugin({
+          verbose: true,
+          staticFileGlobsIgnorePatterns: [/\.next\//],
+          runtimeCaching: [
+            {
+              handler: 'networkFirst',
+              urlPattern: /^https?.*/
+            }
+          ]
+        })
+      )
+
+      return config
+    }
+  }
 )

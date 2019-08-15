@@ -1,0 +1,14 @@
+{
+  "name": "Huebris Arts",
+  "short_name": "Huebris Arts",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#000",
+  "description": "Welcome to Huebris Arts, where you can find original abstract artwork, acrylic and watercolor paintings, hand drawn portraits, prints, merchandise and request custom-made art pieces designed to bring your vision to life by artist Lauren “Huebris” Rust.",
+  "icons": [{
+    "src": "/static/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
