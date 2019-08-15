@@ -4,8 +4,8 @@ const withPlugins = require('next-compose-plugins')
 
 module.exports = withPlugins(
   [
-    withOffline(),
-    withCSS()
+    withOffline,
+    withCSS
   ],
   { distDir: 'build' }
 )
