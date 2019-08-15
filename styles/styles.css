@@ -11,6 +11,11 @@ body {
   text-align: center;
 }
 
+.layout-hr{
+  width: 90vw;
+  margin: 5vh 0;
+}
+
 video{
   margin: 0 7.5%;
   width: 85%;

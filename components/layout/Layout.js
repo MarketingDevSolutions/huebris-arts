@@ -80,8 +80,10 @@ function Layout ({
         <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap' rel='stylesheet' />
       </Head>
       <Header />
+      <hr className="layout-hr"/>
       { loading ? <h3>Loading...</h3> : children }
       <Cart />
+      <hr className="layout-hr"/>
       <Footer />
     </>
   )
