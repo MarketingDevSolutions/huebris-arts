@@ -6,19 +6,6 @@ import withReduxStore from '../lib/with-redux-store'
 import '../styles/styles.css'
 
 class MyApp extends App {
-  componentDidMount () {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/service-worker.js')
-        .then(registration => {
-          console.log('Yay! Workbox is loaded 🎉')
-        })
-        .catch(err => {
-          console.warn("Boo! Workbox didn't load 😬", err.message)
-        })
-    }
-  }
-
   render () {
     const { Component, pageProps, reduxStore } = this.props
     return (
