@@ -12,7 +12,12 @@ export default function PaintingItem ({ painting }) {
     id
   }} prefetch>
     <Item>
-      <img src={url} className='lazyload' alt={title} loading='lazy' />
+      <img
+        src={url}
+        alt={title}
+        width='250'
+        height='200'
+      />
       <ItemFooter>
         <h2><b>{title}</b></h2>
         <span>{measurements}</span>

@@ -1,183 +1,161 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Layout from './../components/layout/Layout'
 import Link from 'next/link'
-import CustomButton from './../components/custom-button/CustomButton';
-import PaypalButton from './../components/paypal-button/PaypalButton';
+import PaypalButton from './../components/paypal-button/PaypalButton'
+import { Container, SelectWrapper, Select, ResetAmount } from '../styles/components/product'
+import { Button } from '../styles'
+import { Image, Grid, GridItem } from '../styles/pages/painting'
 
-class Painting extends React.Component {
-  static async getInitialProps ({ query }) {
-    const { id } = query
+function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
+  const [amount, setAmount] = useState(0)
+  const [wantsToBuy, setWantsToBuy] = useState(false)
+  const [addedToCart, setAddedToCart] = useState(false)
+  const [isCheckout, setIsCheckout] = useState(false)
 
-    return { id }
+  useEffect(() => {
+    let found
+
+    cart.forEach((element) => {
+      const painting = getPainting()
+
+      if (element.item.id === painting.id && element.type === 'painting') {
+        found = true
+        return
+      }
+
+      setAddedToCart(found)
+    })
+  })
+
+  const handleBuyClick = () => {
+    if (amount >= 1 && amount <= 2) setWantsToBuy(true)
   }
 
-  constructor(){
-    super();
-
-    this.state = {
-      amount: 0,
-      wantsToBuy: false,
-      addedToCart: false,
-      isCheckout: false
-    }
-  }
-  handleBuyClick = (event) => {
-    const { amount } = this.state
-    if (amount >=1 && amount <= 2) {
-      this.setState({
-        wantsToBuy: true
-      });
-    }
+  const handleChange = e => {
+    setAmount(parseInt(e.target.value))
   }
 
-  handleChange =(event)=>{
-    this.setState({
-      amount: parseInt(event.target.value)
-    });
+  const handleResetSelect = e => {
+    e.preventDefault()
+    setAmount(parseInt(0))
   }
 
-  addToCart = (event) =>{
-    const painting = this.getPainting();
-    const { title, id } = painting;
-    const { amount } = this.state;
+  const addToCart = () => {
+    const painting = getPainting()
 
-    let price = 35;
-    if(amount != 2){
-      price = 20;
+    let price = 35
+    if (amount !== 2) {
+      price = 20
     };
 
-    this.props.addItemToCart({
+    addItemToCart({
       type: 'painting',
       item: painting,
       amount,
       price
-    });
+    })
 
-    this.setState({
-      addedToCart: true
-    });
+    setAddedToCart(true)
   }
 
-  checkout = (event) =>{
-    console.log('Bought');
+  const checkout = () => {
+    console.log('Bought')
 
-    this.setState({
-      isCheckout: true
-    });
+    setIsCheckout(true)
   }
 
-  getPainting = () => {
-    const { storePaintings, id } = this.props
-
+  const getPainting = () => {
     const painting = storePaintings.filter((item) => {
       return item.id === parseInt(id)
     })[0]
 
-    return painting;
+    return painting
   }
 
-  componentDidMount() {
-    const { cart, id } = this.props;
-    let found = false
+  const painting = getPainting()
 
-    cart.forEach((element)=>{
-      if (element.item.id === print.id && element.type === 'painting'){
-        found = true;
-        return
-      }
+  const { url } = painting.picture.fields.file
+  const { title, measurements, description, material } = painting
 
-      this.setState({
-          addedToCart: found 
-        });
-    })
-
-
-
-
+  let price = 35
+  let paypalPrice = 17.5
+  if (amount !== 2) {
+    price = 20
+    paypalPrice = 20
   }
 
-  render () {
-    const { storePaintings, id } = this.props
-
-    const painting = this.getPainting();
-
-    const { url } = painting.picture.fields.file
-    const { title, measurements, description, material } = painting
-
-    const { amount, addedToCart, isCheckout, wantsToBuy } = this.state
-
-    let price = 35;
-    let paypalPrice = 17.5;
-    if(amount !== 2){
-      price = 20;
-      paypalPrice = 20;
-    }
-
-    let item = [
-      {
-        name: title,
-        description: 'Huebris Arts Painting',
-        quantity: `${amount}`,
-        price: `${paypalPrice}`,
-        currency: "USD"
-      }
-      ]
-
-    return (<Layout title={`${title} | Huebris Arts`}><div className='painting-modal'>
-      <img src={url} alt={title} className='image' />
-      <h3 className='label'><b>TITLE: </b>{title}</h3>
-      <h3 className='label'><b>MATERIAL: </b>{material}</h3>
-      <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
-      <h3 className='label'><b>MEASUREMENTS: </b>{measurements}</h3>
-      <Link href='/'>
-        <span className='return'>
-          <b>RETURN TO HOME</b>
-        </span>
-      </Link>
-
-      <h2 className="text-center">LIKE IT?</h2>
-      <div className="amount-div">
-         <label>AMOUNT:</label>
-         <input 
-           className="amount-input" 
-           type="number" 
-           name="amount" 
-           min="1" 
-           max="2"
-           onChange={this.handleChange}
-           /><br/>
-         <label>PRICE: {price}$</label>
-      </div>
-      
+  const item = [
     {
-      wantsToBuy ?
-      <div className="buttons">
-            {
-              isCheckout ?
-              <h5 className="added">THANK YOU!</h5> : 
-                <PaypalButton
-                  total={price}
-                  items={item}
-                  id={id} 
-                  onSuccess={this.checkout}/>
-            }
-            <div className="margin-div"></div>
-            {
-              addedToCart ?
-              <h5 className="added">ADDED TO CART</h5> : 
-    
-              <span onClick={this.addToCart}>
-                <CustomButton>ADD TO CART</CustomButton>
-              </span>
-            }
-        </div> : 
-        <span onClick={this.handleBuyClick}>
-          <CustomButton>BUY NOW</CustomButton>
-        </span> }
+      name: title,
+      description: 'Huebris Arts Painting',
+      quantity: `${amount}`,
+      price: `${paypalPrice}`,
+      currency: 'USD'
+    }
+  ]
 
-      <style jsx>
-        {`
+  return (
+    <Layout title={`${title} | Huebris Arts`}>
+      <div className='painting-modal'>
+        <Grid>
+          <GridItem>
+            <Image src={url} alt={title} />
+          </GridItem>
+
+          <GridItem>
+            <h3 className='label'><b>TITLE: </b>{title}</h3>
+            <h3 className='label'><b>MATERIAL: </b>{material}</h3>
+            <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
+            <h3 className='label'><b>MEASUREMENTS: </b>{measurements}</h3>
+
+            <h2 className='text-center'>LIKE IT?</h2>
+            {price && price ? (
+              <Container>
+                <SelectWrapper>
+                  <Select onChange={handleChange} value={amount}>
+                    <option disabled value='0'>Choose an amount</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                  </Select>
+                </SelectWrapper>
+                {amount === 0 ? <b style={{ color: 'red' }}>You need to select an amount to buy</b> : (
+                  <ResetAmount onClick={handleResetSelect}>Reset amount</ResetAmount>
+                )}
+              </Container>
+            ) : ''}
+
+            {amount !== 0 ? wantsToBuy
+              ? <div className='buttons'>
+                {
+                  isCheckout
+                    ? <h5 className='added'>THANK YOU!</h5>
+                    : <PaypalButton
+                      total={price}
+                      items={item}
+                      id={id}
+                      onSuccess={checkout}
+                    />
+                }
+                <div className='margin-div' />
+                {
+                  addedToCart
+                    ? <h5 className='added'>ADDED TO CART</h5>
+                    : <Button onClick={addToCart}>ADD TO CART</Button>
+                }
+              </div>
+              : <Button onClick={handleBuyClick}>BUY NOW</Button> : ''}
+          </GridItem>
+        </Grid>
+
+        <div style={{ marginTop: 48 }}>
+          <Link href='/'>
+            <Button>RETURN TO HOME</Button>
+          </Link>
+        </div>
+
+        <style jsx>
+          {`
 
           .added{
           text-align: center;
@@ -219,18 +197,17 @@ class Painting extends React.Component {
             text-align:center;
             align-content: center;
           }
-
-        .image {
-          width: 60vw;
-          height: 75vh;
-          background-position: center;
-          display: block;
-          margin: 5px auto;
-        }
   `}
-      </style>
-    </div></Layout>)
-  }
+        </style>
+      </div>
+    </Layout>
+  )
+}
+
+Painting.getInitialProps = async ({ query }) => {
+  const { id } = query
+
+  return { id }
 }
 
 function mapStateToProps (state) {
@@ -239,7 +216,7 @@ function mapStateToProps (state) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     addItemToCart: (item) => dispatch({
       type: 'ADD_ITEM_TO_CART',
       item

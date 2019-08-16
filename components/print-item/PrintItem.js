@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
-import { Select } from 'react-materialize'
 import CustomButton from '../custom-button/CustomButton'
 import PaypalButton from '../paypal-button/PaypalButton'
-import { Price } from '../../styles/components/product'
+import { Container, SelectWrapper, Select, ResetAmount } from '../../styles/components/product'
 
 function PrintItem ({ cart, print, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -34,6 +33,11 @@ function PrintItem ({ cart, print, addItemToCart }) {
 
   const handleChange = e => {
     setAmount(parseInt(e.target.value))
+  }
+
+  const handleResetSelect = e => {
+    e.preventDefault()
+    setAmount(parseInt(0))
   }
 
   const addToCart = e => {
@@ -105,13 +109,18 @@ function PrintItem ({ cart, print, addItemToCart }) {
         <p className='price'>PRICE: <b>{`${price}.00`}$</b></p>
 
         {price && price ? (
-          <Price>
-            <Select onChange={handleChange}>
-              <option defaultValue disabled value='0'>Choose amount</option>
-              <option value='1'>1</option>
-              <option value='2'>2</option>
-            </Select>
-          </Price>
+          <Container>
+            <SelectWrapper>
+              <Select onChange={handleChange} value={amount}>
+                <option disabled value='0'>Choose an amount</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+              </Select>
+            </SelectWrapper>
+            {amount === 0 ? <b style={{ color: 'red' }}>You need to select an amount to buy</b> : (
+              <ResetAmount onClick={handleResetSelect}>Reset amount</ResetAmount>
+            )}
+          </Container>
         ) : ''}
 
         {amount !== 0 ? wantsToBuy
