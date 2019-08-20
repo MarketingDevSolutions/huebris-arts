@@ -107,7 +107,8 @@ function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
             <h3 className='label'><b>TITLE: </b>{title}</h3>
             <h3 className='label'><b>MATERIAL: </b>{material}</h3>
             <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
-            <h3 className='label'><b>MEASUREMENTS: </b>{measurements}</h3>
+            <h3 className='label'><b>ORIGINAL MEASUREMENTS: </b>{measurements}</h3>
+            <h3 className='label'><b>PRINT MEASUREMENTS (for sale): </b>11 x 14in</h3>
 
             <h2 className='text-center'>LIKE IT?</h2>
             {price && price ? (
@@ -149,8 +150,8 @@ function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
         </Grid>
 
         <div style={{ marginTop: 48 }}>
-          <Link href='/'>
-            <Button>RETURN TO HOME</Button>
+          <Link href='/store'>
+            <Button>RETURN TO STORE</Button>
           </Link>
         </div>
 
