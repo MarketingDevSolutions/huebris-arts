@@ -62,9 +62,6 @@ class Header extends React.Component{
 				</div>
 			</div>
 			<div className="options">
-				<Link href="/gallery">
-					<a className="option">GALLERY</a>
-				</Link>
 				<Link href="/store">
 					<a className="option">STORE</a>
 				</Link>
@@ -83,9 +80,6 @@ class Header extends React.Component{
 				<div className="child-vertical">
 					<Link href="/">
 						<span className="option">HOME</span>
-					</Link>
-					<Link href="/gallery">
-						<span className="option">GALLERY</span>
 					</Link>
 					<Link href="/store">
 						<span className="option">STORE</span>

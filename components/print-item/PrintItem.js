@@ -106,7 +106,7 @@ function PrintItem ({ cart, print, addItemToCart }) {
       <div className='print-item'>
         <img src={url} className='image' alt={title} />
         <h2 className='title'><b>{title}</b></h2>
-        <p className='price'>PRICE: <b>{`${price}.00`}$</b></p>
+        <p className='price'>PRICE: <b>${`${price}.00`}</b></p>
 
         {price && price ? (
           <Container>
