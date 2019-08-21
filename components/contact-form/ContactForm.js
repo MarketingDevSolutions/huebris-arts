@@ -39,9 +39,7 @@ export default function ContactForm () {
 
     setLoading(true)
 
-    await axios.post('https://huebris-email.herokuapp.com/api/contact', encode({
-      inputs
-    }), config)
+    await axios.post('https://huebris-email.herokuapp.com/api/contact', inputs, config)
       .then(response => response)
       .then(res => {
         if (res.ok) {
