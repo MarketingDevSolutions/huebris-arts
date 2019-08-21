@@ -110,7 +110,7 @@ function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
             <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
             <h3 className='label'><b>ORIGINAL MEASUREMENTS: </b>{measurements}</h3>
             <h3 className='label'><b>PRINT MEASUREMENTS (for sale): </b>11 x 14in</h3>
-            <h3 className='label'><b>PRICE: </b>{formatPrice(price)}</h3>
+            <h3 className='label'><b>PRICE: </b>{formatPrice(price)} + Shipping and Handling</h3>
 
             <h2 className='text-center'>LIKE IT?</h2>
             {price && price ? (
