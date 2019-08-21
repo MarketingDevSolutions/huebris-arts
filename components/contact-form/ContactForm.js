@@ -36,12 +36,11 @@ export default function ContactForm () {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const form = e.target
 
     setLoading(true)
 
     await axios.post('https://huebris-email.herokuapp.com/api/contact', encode({
-      ...inputs
+      inputs
     }), config)
       .then(response => response)
       .then(res => {
@@ -58,8 +57,6 @@ export default function ContactForm () {
         setLoading(false)
         setError('Error sending email. Please, try later.')
       })
-
-    form.reset()
   }
 
   const handleCloseSuccess = () => {
