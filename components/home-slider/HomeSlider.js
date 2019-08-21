@@ -17,13 +17,13 @@ export default class HomeSlider extends Component {
       <div>
         <Slider {...settings}>
           <div>
-            <img src="./../../static/flyer.png" className="slide-img" alt="Slide"/>
+            <img src="./../../static/slide-1.jpg" className="slide-img" alt="Slide"/>
           </div>
           <div>
-            <img src="./../../static/flyer.png" className="slide-img" alt="Slide"/>
+            <img src="./../../static/slide-2.jpg" className="slide-img" alt="Slide"/>
           </div>
           <div>
-            <img src="./../../static/flyer.png" className="slide-img" alt="Slide"/>
+            <img src="./../../static/slide-2.jpg" className="slide-img" alt="Slide"/>
           </div>
         </Slider>
       </div>
