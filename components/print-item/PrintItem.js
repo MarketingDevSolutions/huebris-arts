@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import CustomButton from '../custom-button/CustomButton'
 import PaypalButton from '../paypal-button/PaypalButton'
 import { Container, SelectWrapper, Select, ResetAmount } from '../../styles/components/product'
+import { formatPrice } from '../../helpers'
 
 function PrintItem ({ cart, print, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -106,7 +107,7 @@ function PrintItem ({ cart, print, addItemToCart }) {
       <div className='print-item'>
         <img src={url} className='image' alt={title} />
         <h2 className='title'><b>{title}</b></h2>
-        <p className='price'>PRICE: <b>${`${price}.00`}</b></p>
+        <p className='price'>PRICE: <b>{formatPrice(price)}</b></p>
 
         {price && price ? (
           <Container>
@@ -117,7 +118,7 @@ function PrintItem ({ cart, print, addItemToCart }) {
                 <option value='2'>2</option>
               </Select>
             </SelectWrapper>
-            {amount === 0 ? <b style={{ color: 'red' }}>You need to select an amount to buy</b> : (
+            {amount === 0 ? '' : (
               <ResetAmount onClick={handleResetSelect}>Reset amount</ResetAmount>
             )}
           </Container>

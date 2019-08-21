@@ -6,6 +6,7 @@ import PaypalButton from './../components/paypal-button/PaypalButton'
 import { Container, SelectWrapper, Select, ResetAmount } from '../styles/components/product'
 import { Button } from '../styles'
 import { Image, Grid, GridItem } from '../styles/pages/painting'
+import { formatPrice } from '../helpers'
 
 function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -109,6 +110,7 @@ function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
             <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
             <h3 className='label'><b>ORIGINAL MEASUREMENTS: </b>{measurements}</h3>
             <h3 className='label'><b>PRINT MEASUREMENTS (for sale): </b>11 x 14in</h3>
+            <h3 className='label'><b>PRICE: </b>{formatPrice(price)}</h3>
 
             <h2 className='text-center'>LIKE IT?</h2>
             {price && price ? (
@@ -120,7 +122,7 @@ function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
                     <option value='2'>2</option>
                   </Select>
                 </SelectWrapper>
-                {amount === 0 ? <b style={{ color: 'red' }}>You need to select an amount to buy</b> : (
+                {amount === 0 ? '' : (
                   <ResetAmount onClick={handleResetSelect}>Reset amount</ResetAmount>
                 )}
               </Container>
@@ -151,7 +153,7 @@ function Painting ({ storePaintings, cart, print, id, addItemToCart }) {
 
         <div style={{ marginTop: 48 }}>
           <Link href='/store'>
-            <Button>RETURN TO STORE</Button>
+            <Button>RETURN TO GALLERY</Button>
           </Link>
         </div>
 

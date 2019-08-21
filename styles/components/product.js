@@ -96,4 +96,21 @@ export const SelectWrapper = styled.div`
 
 export const ResetAmount = styled.a`
   cursor: pointer;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+  transition: all 0.3s ease-in-out;
+  max-width: 170px;
+  align-self: center;
+  width: 100%;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
 `

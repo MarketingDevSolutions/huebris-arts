@@ -6,7 +6,6 @@
 .cart-link{
 	cursor: pointer;
 	display: flex;
-	flex-wrap: wrap;
 }
 .cart-icon{
 	width: 15px;

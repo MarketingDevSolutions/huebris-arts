@@ -3,17 +3,17 @@ import React from 'react'
 import './cart-item.styles.css'
 
 export default function CartItem ({ cartItem, onRemoveClick }) {
-  let url = '';
-  switch (cartItem.type){
+  let url = ''
+  switch (cartItem.type) {
     case 'print':
-      url = cartItem.item.image.fields.file.url;
-      break;
+      url = cartItem.item.image.fields.file.url
+      break
     case 'painting':
-      url = cartItem.item.picture.fields.file.url;
-      break;
+      url = cartItem.item.picture.fields.file.url
+      break
     default:
-      url = cartItem.item.picture.fields.file.url;
-      break;
+      url = cartItem.item.picture.fields.file.url
+      break
   }
   const { amount, price } = cartItem
   const { title } = cartItem.item
