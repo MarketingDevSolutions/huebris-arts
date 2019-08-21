@@ -42,7 +42,7 @@ export default function ContactForm () {
     await axios.post('https://huebris-email.herokuapp.com/api/contact', inputs, config)
       .then(response => response)
       .then(res => {
-        if (res.ok) {
+        if (res.status === 200) {
           setLoading(false)
           setSuccess(true)
         } else {
