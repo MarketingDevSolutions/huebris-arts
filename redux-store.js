@@ -6,6 +6,8 @@ const initialState = {
   paintings: [],
   smallCanvases: [],
   prints: [],
+  stickers: [],
+  combos: [],
   isCartOpen: false
 }
 
@@ -13,6 +15,8 @@ export const actionTypes = {
   FILL_PAINTINGS: 'FILL_PAINTINGS',
   FILL_PRINTS: 'FILL_PRINTS',
   FILL_CANVASES: 'FILL_CANVASES',
+  FILL_STICKERS: 'FILL_STICKERS',
+  FILL_COMBOS: 'FILL_COMBOS',
   ADD_ITEM_TO_CART: 'ADD_ITEM_TO_CART',
   OPEN_CART: 'OPEN_CART',
   CLOSE_CART: 'CLOSE_CART',
@@ -34,6 +38,14 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.FILL_CANVASES:
       return Object.assign({}, state, {
         smallCanvases: action.canvases
+      })
+    case actionTypes.FILL_STICKERS:
+      return Object.assign({}, state, {
+        stickers: action.stickers
+      })
+    case actionTypes.FILL_COMBOS:
+      return Object.assign({}, state, {
+        combos: action.combos
       })
     case actionTypes.ADD_ITEM_TO_CART:
       return {
@@ -77,6 +89,14 @@ export const savePrintsData = (prints) => {
 
 export const saveCanvasesData = (canvases) => {
   return { type: actionTypes.FILL_CANVASES, canvases }
+}
+
+export const saveStickersData = (stickers) => {
+  return { type: actionTypes.FILL_STICKERS, stickers }
+}
+
+export const saveCombosData = (combos) => {
+  return { type: actionTypes.FILL_COMBOS, combos }
 }
 
 export const addItemToCart = (item) => {

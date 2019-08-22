@@ -22,6 +22,8 @@ function Layout ({
   fillPaintings,
   fillPrints,
   fillCanvases,
+  fillStickers,
+  fillCombos,
   children,
   title
 }) {
@@ -60,9 +62,25 @@ function Layout ({
           return item.fields
         })
 
+        // Filters stickers
+        const stickers = entries.items.filter((entry) => {
+          return entry.sys.contentType.sys.id === 'sticker'
+        }).map((item) => {
+          return item.fields
+        })
+
+        // Filters combos
+        const combos = entries.items.filter((entry) => {
+          return entry.sys.contentType.sys.id === 'combo'
+        }).map((item) => {
+          return item.fields
+        })
+
         fillPaintings(paintings)
         fillPrints(prints)
         fillCanvases(canvases)
+        fillStickers(stickers)
+        fillCombos(combos)
       })
     }
   }
@@ -104,7 +122,15 @@ const mapDispatchToProps = (dispatch) => {
     fillCanvases: (canvases) => dispatch({
       type: 'FILL_CANVASES',
       canvases
-    })
+    }),
+    fillCombos: (combos) => dispatch({
+      type: 'FILL_COMBOS',
+      combos
+    }),
+    fillStickers: (stickers) => dispatch({
+      type: 'FILL_STICKERS',
+      stickers
+    }),
   }
 }
 
