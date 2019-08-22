@@ -80,8 +80,15 @@ function PrintItem ({ cart, print, addItemToCart }) {
       quantity: `${amount}`,
       price: `${paypalPrice}`,
       currency: 'USD'
+    },
+    {
+      name: 'Shipping and handling',
+      description: 'Services',
+      quantity: '1',
+      price: '5',
+      currency: 'USD'
     }
-  ]
+  ];
 
   return (
     <>
@@ -130,7 +137,7 @@ function PrintItem ({ cart, print, addItemToCart }) {
               isCheckout
                 ? <h5 className='added'>THANK YOU!</h5>
                 : <PaypalButton
-                  total={price}
+                  total={price + 5}
                   items={item}
                   id={id}
                   onSuccess={checkout}

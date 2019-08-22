@@ -29,7 +29,7 @@ function Cart ({ cart, closeCart, emptyCart, removeCartItem, isCartOpen }) {
       onRemoveClick={handleRemoveItem} />
   ))
 
-  const paypalCart = cart.map((cartItem) => {
+  let paypalCart = cart.map((cartItem) => {
     let paypalPrice
     cartItem.amount === 1 ? paypalPrice = 20 : paypalPrice = 17.5
     return (
@@ -41,6 +41,14 @@ function Cart ({ cart, closeCart, emptyCart, removeCartItem, isCartOpen }) {
         currency: 'USD'
       }
     )
+  })
+
+  paypalCart.unshift({
+    name: 'Shipping and handling',
+    description: 'Services',
+    quantity: '1',
+    price: '5',
+    currency: 'USD'
   })
 
   return (
@@ -59,13 +67,13 @@ function Cart ({ cart, closeCart, emptyCart, removeCartItem, isCartOpen }) {
         </div>
         <hr />
         <div className='cart-footer'>
-          <h3>TOTAL: {totalPrice}$</h3>
+          <h3>TOTAL: ${totalPrice}.00 + Shipping and Handling</h3>
           <div className='buttons'>
             <span onClick={handleClearCart}>
               <CustomButton>CLEAR CART</CustomButton>
             </span>
             { showPayPal ? <PaypalButton
-              total={totalPrice}
+              total={totalPrice + 5.00}
               items={paypalCart}
               id='cart'
               onSuccess={handleClearCart} />
