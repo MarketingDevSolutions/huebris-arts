@@ -1,0 +1,19 @@
+/*Slider*/
+.only-desktop{
+  display: block!important;
+}
+
+.only-mobile{
+  display: none!important;
+}
+
+@media screen and (max-width: 480px){
+   /*Slider*/
+  .only-desktop{
+    display: none!important;
+  }
+
+  .only-mobile{
+    display: block!important;
+  } 
+}

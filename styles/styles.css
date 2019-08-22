@@ -60,6 +60,7 @@
 }
 
 @media all and (min-width: 0\0) and (min-resolution: 0.001dpcm) {
+
   .select select {
     padding-right: 0;
   }
