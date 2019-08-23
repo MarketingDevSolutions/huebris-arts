@@ -23,7 +23,7 @@ export default class HomeSlider extends Component {
           </div>
           <div>
             <img src="./../../static/slide-2.jpg" className="slide-img only-desktop" alt="Slide"/>
-            <img src="./../../static/slide-mobile-1.jpg" className="slide-img only-mobile" alt="Slide"/>
+            <img src="./../../static/slide-mobile-2.jpg" className="slide-img only-mobile" alt="Slide"/>
           </div>
           <div>
             <img src="./../../static/slide-2.jpg" className="slide-img only-desktop" alt="Slide"/>

@@ -16,6 +16,12 @@ function Index (props) {
           <HomeSlider/>
         </div>
         <Description>Welcome to Huebris Arts, where you can find original abstract artwork, acrylic and watercolor paintings, hand drawn portraits, prints, merchandise and request custom-made art pieces designed to bring your vision to life by artist Lauren “Huebris” Rust.</Description>
+        <Container>
+          <h1 style={{ textAlign: 'center' }}>Come see Huebris Arts at the New Mexico Prickly Pear Festival in Albuquerque on Saturday August 31st from 10am to 6pm. More information at:</h1>
+          <a style={{ textAlign: 'center', fontSize: '20px' }} href='https://www.facebook.com/events/three-sisters-kitchen/new-mexico-prickly-pear-festival/347766582608198/' target="_blank"><b>Facebook event page</b></a><br/>
+          <a style={{ textAlign: 'center', fontSize: '20px' }} href='https://www.nmpricklypearfest.com/' target="_blank"><b>Event webpage</b></a><br/>
+          <a style={{ textAlign: 'center', fontSize: '20px' }} href='https://www.nmpricklypearfest.com/vendors' target="_blank"><b>Info about Huebris Arts as a vendor</b></a>
+        </Container>
         <h3 style={{ textAlign: 'center' }}>MY LATEST WORKS</h3>
         <Container>
           <PaintingPreview paintings={paintings} />
