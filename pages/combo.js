@@ -8,7 +8,7 @@ import { Button } from '../styles'
 import { Image, Grid, GridItem } from '../styles/pages/painting'
 import { formatPrice } from '../helpers'
 
-function Painting ({ storePaintings, cart, id, addItemToCart }) {
+function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintings }) {
   const [amount, setAmount] = useState(0)
   const [wantsToBuy, setWantsToBuy] = useState(false)
   const [addedToCart, setAddedToCart] = useState(false)
@@ -18,9 +18,9 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
     let found
 
     cart.forEach((element) => {
-      const painting = getPainting()
+      const combo = getCombo()
 
-      if (element.item.id === painting.id && element.type === 'painting') {
+      if (element.item.id === combo.id && element.type === 'combo') {
         found = true
         return
       }
@@ -43,16 +43,18 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
   }
 
   const addToCart = () => {
-    const painting = getPainting()
+    const combo = getCombo()
 
     let price = 35
     if (amount !== 2) {
       price = 20
     };
 
+    //IMPORTANT In combo.title pass string explaining the prints and stickers chosen by the user
+
     addItemToCart({
-      type: 'painting',
-      item: painting,
+      type: 'combo',
+      item: combo,
       amount,
       price
     })
@@ -66,30 +68,26 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
     setIsCheckout(true)
   }
 
-  const getPainting = () => {
-    const painting = storePaintings.filter((item) => {
+  const getCombo = () => {
+    const combo = storeCombos.filter((item) => {
       return item.id === parseInt(id)
     })[0]
 
-    return painting
+    return combo
   }
 
-  const painting = getPainting()
+  const combo = getCombo()
 
-  const { url } = painting.picture.fields.file
-  const { title, measurements, description, material } = painting
+  const { url } = combo.image.fields.file
+  const { title, description, price } = combo
 
-  let price = 35
-  let paypalPrice = 17.5
-  if (amount !== 2) {
-    price = 20
-    paypalPrice = 20
-  }
+  let paypalPrice = price
 
   const item = [
     {
-      name: title,
-      description: 'Huebris Arts Painting',
+      name: `Huebris Arts ${title}`,
+      // IMPORTANT: Build a string explaining the prints and stickers chosen
+      description: `X DE TANTO Y DE TANTO`,
       quantity: `${amount}`,
       price: `${paypalPrice}`,
       currency: 'USD'
@@ -113,17 +111,14 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
 
           <GridItem>
             <h3 className='label'><b>TITLE: </b>{title}</h3>
-            <h3 className='label'><b>MATERIAL: </b>{material}</h3>
             <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
-            <h3 className='label'><b>ORIGINAL MEASUREMENTS: </b>{measurements}</h3>
-            <h3 className='label'><b>PRINT MEASUREMENTS (for sale): </b>11 x 14in</h3>
             <h3 className='label'><b>PRICE: </b>{formatPrice(price)} + Shipping and Handling</h3>
 
             <h2 className='text-center'>LIKE IT?</h2>
             {price && price ? (
               <Container>
                 <SelectWrapper>
-                  <Select onChange={handleChange} value={amount}>
+                  <Select onChange={handleChange} value='1'>
                     <option disabled value='0'>Choose an amount</option>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
@@ -214,15 +209,15 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
   )
 }
 
-Painting.getInitialProps = async ({ query }) => {
+Combo.getInitialProps = async ({ query }) => {
   const { id } = query
 
   return { id }
 }
 
 function mapStateToProps (state) {
-  const { paintings, cart } = state
-  return { storePaintings: paintings, cart }
+  const { combos, cart, paintings, stickers } = state
+  return { storeCombos: combos, cart, paintings, stickers }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -234,4 +229,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Painting)
+export default connect(mapStateToProps, mapDispatchToProps)(Combo)

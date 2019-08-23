@@ -12,7 +12,7 @@ export default function CartItem ({ cartItem, onRemoveClick }) {
       url = cartItem.item.picture.fields.file.url
       break
     default:
-      url = cartItem.item.picture.fields.file.url
+      url = cartItem.item.image.fields.file.url
       break
   }
   const { amount, price } = cartItem

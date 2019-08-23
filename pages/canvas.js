@@ -8,7 +8,7 @@ import { Button } from '../styles'
 import { Image, Grid, GridItem } from '../styles/pages/painting'
 import { formatPrice } from '../helpers'
 
-function Painting ({ storePaintings, cart, id, addItemToCart }) {
+function Canvas ({ storeCanvases, cart, print, id, addItemToCart }) {
   const [amount, setAmount] = useState(0)
   const [wantsToBuy, setWantsToBuy] = useState(false)
   const [addedToCart, setAddedToCart] = useState(false)
@@ -18,9 +18,9 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
     let found
 
     cart.forEach((element) => {
-      const painting = getPainting()
+      const canvas = getCanvas()
 
-      if (element.item.id === painting.id && element.type === 'painting') {
+      if (element.item.id === canvas.id && element.type === 'canvas') {
         found = true
         return
       }
@@ -43,7 +43,7 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
   }
 
   const addToCart = () => {
-    const painting = getPainting()
+    const canvas = getCanvas()
 
     let price = 35
     if (amount !== 2) {
@@ -51,8 +51,8 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
     };
 
     addItemToCart({
-      type: 'painting',
-      item: painting,
+      type: 'canvas',
+      item: canvas,
       amount,
       price
     })
@@ -66,18 +66,18 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
     setIsCheckout(true)
   }
 
-  const getPainting = () => {
-    const painting = storePaintings.filter((item) => {
+  const getCanvas = () => {
+    const canvas = storeCanvases.filter((item) => {
       return item.id === parseInt(id)
     })[0]
 
-    return painting
+    return canvas
   }
 
-  const painting = getPainting()
+  const canvas = getCanvas()
 
-  const { url } = painting.picture.fields.file
-  const { title, measurements, description, material } = painting
+  const { url } = canvas.image.fields.file
+  const { title, measurements, material } = canvas
 
   let price = 35
   let paypalPrice = 17.5
@@ -89,7 +89,7 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
   const item = [
     {
       name: title,
-      description: 'Huebris Arts Painting',
+      description: 'Huebris Arts Mini Canvas',
       quantity: `${amount}`,
       price: `${paypalPrice}`,
       currency: 'USD'
@@ -114,7 +114,6 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
           <GridItem>
             <h3 className='label'><b>TITLE: </b>{title}</h3>
             <h3 className='label'><b>MATERIAL: </b>{material}</h3>
-            <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
             <h3 className='label'><b>ORIGINAL MEASUREMENTS: </b>{measurements}</h3>
             <h3 className='label'><b>PRINT MEASUREMENTS (for sale): </b>11 x 14in</h3>
             <h3 className='label'><b>PRICE: </b>{formatPrice(price)} + Shipping and Handling</h3>
@@ -214,15 +213,15 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
   )
 }
 
-Painting.getInitialProps = async ({ query }) => {
+Canvas.getInitialProps = async ({ query }) => {
   const { id } = query
 
   return { id }
 }
 
 function mapStateToProps (state) {
-  const { paintings, cart } = state
-  return { storePaintings: paintings, cart }
+  const { smallCanvases, cart } = state
+  return { storeCanvases: smallCanvases, cart }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -234,4 +233,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Painting)
+export default connect(mapStateToProps, mapDispatchToProps)(Canvas)
