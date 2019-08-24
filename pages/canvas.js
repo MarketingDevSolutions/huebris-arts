@@ -159,7 +159,7 @@ function Canvas ({ storeCanvases, cart, print, id, addItemToCart }) {
 
         <div style={{ marginTop: 48 }}>
           <Link href='/store'>
-            <Button>RETURN TO GALLERY</Button>
+            <Button>RETURN TO STORE</Button>
           </Link>
         </div>
 

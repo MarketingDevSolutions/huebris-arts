@@ -42,31 +42,9 @@ function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintin
     setAmount(parseInt(0))
   }
 
-  const addToCart = () => {
-    const combo = getCombo()
+  
 
-    let price = 35
-    if (amount !== 2) {
-      price = 20
-    };
-
-    // IMPORTANT In combo.title pass string explaining the prints and stickers chosen by the user
-
-    addItemToCart({
-      type: 'combo',
-      item: combo.title,
-      amount,
-      price
-    })
-
-    setAddedToCart(true)
-  }
-
-  const checkout = () => {
-    console.log('Bought')
-
-    setIsCheckout(true)
-  }
+    
 
   const getCombo = () => {
     const combo = storeCombos.filter((item) => {
@@ -81,25 +59,6 @@ function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintin
   const { url } = combo.image.fields.file
   const { title, description, price } = combo
 
-  const paypalPrice = price
-
-  const item = [
-    {
-      name: `Huebris Arts ${title}`,
-      // IMPORTANT: Build a string explaining the prints and stickers chosen
-      description: `X DE TANTO Y DE TANTO`,
-      quantity: `${amount}`,
-      price: `${paypalPrice}`,
-      currency: 'USD'
-    },
-    {
-      name: 'Shipping and handling',
-      description: 'Services',
-      quantity: '1',
-      price: '5',
-      currency: 'USD'
-    }
-  ]
 
   return (
     <Layout title={`${title} | Huebris Arts`}>
@@ -114,47 +73,14 @@ function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintin
             <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
             <h3 className='label'><b>PRICE: </b>{formatPrice(price)} + Shipping and Handling</h3>
 
-            <h2 className='text-center'>LIKE IT?</h2>
-            {price && price ? (
-              <Container>
-                <SelectWrapper>
-                  <Select onChange={handleChange} value={amount}>
-                    <option disabled value='0'>Choose an amount</option>
-                    <option value='1'>1</option>
-                  </Select>
-                </SelectWrapper>
-                {amount === 0 ? '' : (
-                  <ResetAmount onClick={handleResetSelect}>Reset amount</ResetAmount>
-                )}
-              </Container>
-            ) : ''}
-
-            {amount !== 0 ? wantsToBuy
-              ? <div className='buttons'>
-                {
-                  isCheckout
-                    ? <h5 className='added'>THANK YOU!</h5>
-                    : <PaypalButton
-                      total={price + 5}
-                      items={item}
-                      id={id}
-                      onSuccess={checkout}
-                    />
-                }
-                <div className='margin-div' />
-                {
-                  addedToCart
-                    ? <h5 className='added'>ADDED TO CART</h5>
-                    : <Button onClick={addToCart}>ADD TO CART</Button>
-                }
-              </div>
-              : <Button onClick={handleBuyClick}>BUY NOW</Button> : ''}
           </GridItem>
         </Grid>
 
         <div style={{ marginTop: 48 }}>
+          <h2 className='text-center'>LIKE IT?</h2>
+          <Button>BUY NOW</Button>
           <Link href='/store'>
-            <Button>RETURN TO GALLERY</Button>
+            <Button>RETURN TO STORE</Button>
           </Link>
         </div>
 

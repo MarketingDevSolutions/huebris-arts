@@ -160,7 +160,7 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
 
         <div style={{ marginTop: 48 }}>
           <Link href='/store'>
-            <Button>RETURN TO GALLERY</Button>
+            <Button>RETURN TO STORE</Button>
           </Link>
         </div>
 
