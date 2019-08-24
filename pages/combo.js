@@ -50,11 +50,11 @@ function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintin
       price = 20
     };
 
-    //IMPORTANT In combo.title pass string explaining the prints and stickers chosen by the user
+    // IMPORTANT In combo.title pass string explaining the prints and stickers chosen by the user
 
     addItemToCart({
       type: 'combo',
-      item: combo,
+      item: combo.title,
       amount,
       price
     })
@@ -81,7 +81,7 @@ function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintin
   const { url } = combo.image.fields.file
   const { title, description, price } = combo
 
-  let paypalPrice = price
+  const paypalPrice = price
 
   const item = [
     {
@@ -118,10 +118,9 @@ function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintin
             {price && price ? (
               <Container>
                 <SelectWrapper>
-                  <Select onChange={handleChange} value='1'>
+                  <Select onChange={handleChange} value={amount}>
                     <option disabled value='0'>Choose an amount</option>
                     <option value='1'>1</option>
-                    <option value='2'>2</option>
                   </Select>
                 </SelectWrapper>
                 {amount === 0 ? '' : (
