@@ -1,50 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import Modal from 'react-modal'
+import axios from 'axios'
 import Layout from './../components/layout/Layout'
 import Link from 'next/link'
-import PaypalButton from './../components/paypal-button/PaypalButton'
-import { Container, SelectWrapper, Select, ResetAmount } from '../styles/components/product'
 import { Button } from '../styles'
-import { Image, Grid, GridItem } from '../styles/pages/painting'
+import { Image, Grid, GridItem, ReturnContainer } from '../styles/pages/combos'
 import { formatPrice } from '../helpers'
+import FormInput from '../components/form-input/FormInput'
 
-function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintings }) {
-  const [amount, setAmount] = useState(0)
-  const [wantsToBuy, setWantsToBuy] = useState(false)
-  const [addedToCart, setAddedToCart] = useState(false)
-  const [isCheckout, setIsCheckout] = useState(false)
-
-  useEffect(() => {
-    let found
-
-    cart.forEach((element) => {
-      const combo = getCombo()
-
-      if (element.item.id === combo.id && element.type === 'combo') {
-        found = true
-        return
-      }
-
-      setAddedToCart(found)
-    })
-  })
-
-  const handleBuyClick = () => {
-    if (amount >= 1 && amount <= 2) setWantsToBuy(true)
+const config = {
+  headers: {
+    'Content-Type': 'application/json'
   }
+}
 
-  const handleChange = e => {
-    setAmount(parseInt(e.target.value))
-  }
-
-  const handleResetSelect = e => {
-    e.preventDefault()
-    setAmount(parseInt(0))
-  }
-
-  
-
-    
+function Combo ({ storeCombos, id }) {
+  const [modal, showModal] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const getCombo = () => {
     const combo = storeCombos.filter((item) => {
@@ -54,82 +27,104 @@ function Combo ({ storeCombos, cart, print, id, addItemToCart, stickers, paintin
     return combo
   }
 
+  const handleOpenModal = () => showModal(true)
+
+  const handleCloseModal = () => showModal(false)
+
+  const handleChange = e => {
+    e.persist()
+    setInputs(inputs => ({ ...inputs, [e.target.name]: e.target.value }))
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+
+    await axios.post('https://huebris-email.herokuapp.com/api/contact', inputs, config)
+      .then(response => response)
+      .then(res => {
+        if (res.status === 200) {
+          setSuccess(true)
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   const combo = getCombo()
-
-  const { url } = combo.image.fields.file
   const { title, description, price } = combo
-
+  const { url } = combo.image.fields.file
+  const [inputs, setInputs] = useState({
+    article: `${title} | ${description}`
+  })
 
   return (
     <Layout title={`${title} | Huebris Arts`}>
-      <div className='painting-modal'>
-        <Grid>
-          <GridItem>
-            <Image src={url} alt={title} />
-          </GridItem>
+      <Grid>
+        <GridItem>
+          <Image src={url} alt={title} />
+        </GridItem>
 
-          <GridItem>
-            <h3 className='label'><b>TITLE: </b>{title}</h3>
-            <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
-            <h3 className='label'><b>PRICE: </b>{formatPrice(price)} + Shipping and Handling</h3>
+        <GridItem>
+          <h3 className='label'><b>TITLE: </b>{title}</h3>
+          <h3 className='label'><b>DESCRIPTION: </b>{description}</h3>
+          <h3 className='label'><b>PRICE: </b>{formatPrice(price)} + Shipping and Handling</h3>
 
-          </GridItem>
-        </Grid>
-
-        <div style={{ marginTop: 48 }}>
           <h2 className='text-center'>LIKE IT?</h2>
-          <Button>BUY NOW</Button>
-          <Link href='/store'>
-            <Button>RETURN TO STORE</Button>
-          </Link>
-        </div>
+          <Button onClick={handleOpenModal}>BUY NOW</Button>
+        </GridItem>
+      </Grid>
 
-        <style jsx>
-          {`
+      <ReturnContainer>
+        <Link href='/store'>
+          <Button>RETURN TO STORE</Button>
+        </Link>
+      </ReturnContainer>
 
-          .added{
-          text-align: center;
-          margin: 10px 0;
-        }
-        .amount-div{
-          text-align: center;
-        }
-        .amount-div label{
-          margin-right: 5px;
-        }
-        .amount-input{
-          margin-right: 5px;
-          width:20%;
-        }
-          .return{
-            padding: 10px 20px;
-            min-width: 165px;
-            width: auto;
-            height: 50px;
-            letter-spacing: 0.5px;
-            line-height: 50px;
-            font-size: 15px;
-            background-color: black;
-            color: white;
-            text-transform: uppercase;
-            font-family: 'Open Sans Condensed';
-            font-weight: bolder;
-            border: none;
-            cursor: pointer;
-        }
+      <Modal
+        isOpen={modal}
+        contentLabel='Minimal Modal Example'
+        ariaHideApp={false}
+      >
+        <Button
+          style={{ margin: 0, position: 'relative', left: '90%' }}
+          onClick={handleCloseModal}
+        >X</Button>
+        {success ? 'Your message was sent' : (
+          <form onSubmit={handleSubmit}>
+            <FormInput
+              name='name'
+              label='Name'
+              required
+              onChange={handleChange}
+            />
+            <FormInput
+              name='email'
+              label='Email'
+              type='email'
+              required
+              onChange={handleChange}
+            />
+            <FormInput
+              name='article'
+              label='Article'
+              value={`${title} | ${description}`}
+              disabled
+              onChange={handleChange}
+            />
+            <FormInput
+              textarea='true'
+              name='message'
+              label='Message'
+              required
+              rows={4}
+              onChange={handleChange}
+            />
 
-        .return:hover{
-          background-color: white;
-          color: black;
-          border: 1px solid black;
-        }
-          .painting-modal {
-            text-align:center;
-            align-content: center;
-          }
-  `}
-        </style>
-      </div>
+            <Button type='submit'>Submit message</Button>
+          </form>
+        )}
+      </Modal>
     </Layout>
   )
 }
@@ -141,17 +136,8 @@ Combo.getInitialProps = async ({ query }) => {
 }
 
 function mapStateToProps (state) {
-  const { combos, cart, paintings, stickers } = state
-  return { storeCombos: combos, cart, paintings, stickers }
+  const { combos } = state
+  return { storeCombos: combos }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addItemToCart: (item) => dispatch({
-      type: 'ADD_ITEM_TO_CART',
-      item
-    })
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Combo)
+export default connect(mapStateToProps)(Combo)
