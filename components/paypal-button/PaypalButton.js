@@ -16,9 +16,9 @@ class PaypalButton extends React.Component{
 		const { total, items, id, onSuccess } = this.props;
 
 		paypal.Button.render({
-			env: 'sandbox',
+			env: 'production',
 			client: {
-				sandbox: 'AZRc-7oGPkg2jt9cAOoF0N4YujmbQW1rPFDET9TptRB-tanpuEcrLCY_ytOc8d07cxc9Tjq7ILtSaI_9'
+				production: 'AYkdAwz2nkdhoyurVdShb3_-iuoYOvNlthw7F1Td7jW4ddJr6CTP1OuYqz9ylYA1ypevE9O5tsHxzKgq'
 			},
 
 			payment: function (data, actions) {
