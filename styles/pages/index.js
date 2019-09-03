@@ -1,4 +1,24 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+
+export const EventSmall = styled.img`
+  width: 30%; 
+  height: auto;
+  margin: 5px;
+
+  @media (max-width: 576px) {
+      width: 100%;
+    }
+`;
+
+export const EventBig = styled.img`
+  width: 45%; 
+  height: auto;
+  margin: 8px;
+
+  @media (max-width: 576px) {
+      width: 100%;
+    }
+`;
 
 export const Container = styled.div`
   width: 100%;
