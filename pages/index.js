@@ -16,20 +16,6 @@ function Index (props) {
           <HomeSlider />
         </div>
         <Description>Welcome to Huebris Arts, where you can find original abstract artwork, acrylic and watercolor paintings, hand drawn portraits, prints, merchandise and request custom-made art pieces designed to bring your vision to life by artist Lauren “Huebris” Rust.</Description>
-        <Container>
-          <h1 style={{ textAlign: 'center' }}>Thanks to all who came out to support Huebris Arts and other vendors at the first annual New Mexico Prickly Pear Festival. 
-          Thank you to the event organizers for a wonderful time and the opportunity to celebrate our community!</h1>
-          <Container>
-            <EventSmall src="./../static/event-0.jpeg" alt="Event"/>
-            <EventSmall src="./../static/event-1.jpeg" alt="Event"/>
-            <EventSmall src="./../static/event-2.jpeg" alt="Event"/>
-            <EventBig src="./../static/event-3.jpeg" alt="Event"/>
-            <EventBig src="./../static/event-4.jpeg" alt="Event"/>
-          </Container>
-          <a style={{ textAlign: 'center', fontSize: '20px' }} href='https://www.facebook.com/events/three-sisters-kitchen/new-mexico-prickly-pear-festival/347766582608198/' target='_blank'><b>Facebook event page</b></a><br />
-          <a style={{ textAlign: 'center', fontSize: '20px' }} href='https://www.nmpricklypearfest.com/' target='_blank'><b>Event webpage</b></a><br />
-          <a style={{ textAlign: 'center', fontSize: '20px' }} href='https://www.nmpricklypearfest.com/vendors' target='_blank'><b>Info about Huebris Arts as a vendor</b></a>
-        </Container>
         <h3 style={{ textAlign: 'center' }}>MY LATEST WORKS</h3>
         <Container>
           <PaintingPreview paintings={paintings} />
