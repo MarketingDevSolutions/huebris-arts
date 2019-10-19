@@ -5,6 +5,7 @@ import FormInput from './../form-input/FormInput'
 import CustomButton from './../custom-button/CustomButton'
 import Modal from './../modal/Modal'
 import MiniLoader from './../mini-loader/MiniLoader'
+import './contact-form.css';
 
 const config = {
   headers: {
@@ -110,16 +111,6 @@ export default function ContactForm () {
           </CustomButton>
         </span>
       </form>
-      <style jsx>
-        {`
-					.contact-form{
-						text-align: center;
-						width: 100%;
-						display: flex;
-						flex-direction: column;
-					}
-				`}
-      </style>
     </div>
   )
 }

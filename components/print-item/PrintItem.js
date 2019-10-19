@@ -4,7 +4,8 @@ import Helmet from 'react-helmet'
 import CustomButton from '../custom-button/CustomButton'
 import PaypalButton from '../paypal-button/PaypalButton'
 import { Container, SelectWrapper, Select, ResetAmount } from '../../styles/components/product'
-import { formatPrice } from '../../helpers'
+import { formatPrice } from '../../helpers';
+import './print-item.css';
 
 function PrintItem ({ cart, print, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -156,81 +157,6 @@ function PrintItem ({ cart, print, addItemToCart }) {
           : <span onClick={handleBuyClick}>
             <CustomButton>BUY NOW</CustomButton>
           </span> : ''}
-        <style jsx>
-          {`
-        .added{
-          text-align: center;
-          margin: 10px 0;
-        }
-        .amount-div{
-          text-align: center;
-          font-size: 18px;
-        }
-        .amount-div label{
-          margin-right: 5px;
-        }
-        .amount-input{
-          margin-right: 5px;
-          width: 37.5px;
-          border: 1px solid rgba(0, 0, 0, 0.30);
-          border-radius: 4px;
-          padding: 4px 8px;
-          font-size: 16px;
-        }
-        .amount-input:focus {
-          outline: 0;
-        }
-
-        .print-item {
-          max-width: 300px;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          height: auto;
-          align-items: center;
-          margin: 16px;
-        }
-
-        .margin-div{
-          margin-bottom:5%;
-        }
-
-        .buttons{
-          margin: 5% 0;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .image {
-          max-width: 500px;
-          max-height: 250px;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .print-footer {
-          width: 100%;
-          height: 5%;
-          display: block;
-          justify-content: space-between;
-
-        }
-
-        .title {
-          font-size: 24px;
-          text-align: center;
-          width: 100%;
-          margin-top: 4px;
-          margin-bottom: 8px;
-        }
-
-        .price {
-          margin: 0;
-          font-size: 18px;
-        }
-      `}
-        </style>
       </div>
     </>
   )

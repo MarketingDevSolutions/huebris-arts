@@ -7,6 +7,7 @@ import { Container, SelectWrapper, Select, ResetAmount } from '../styles/compone
 import { Button } from '../styles'
 import { Image, Grid, GridItem } from '../styles/pages/painting'
 import { formatPrice } from '../helpers'
+import './painting.css';
 
 function Painting ({ storePaintings, cart, id, addItemToCart }) {
   const [amount, setAmount] = useState(0)
@@ -163,52 +164,6 @@ function Painting ({ storePaintings, cart, id, addItemToCart }) {
             <Button>RETURN TO STORE</Button>
           </Link>
         </div>
-
-        <style jsx>
-          {`
-
-          .added{
-          text-align: center;
-          margin: 10px 0;
-        }
-        .amount-div{
-          text-align: center;
-        }
-        .amount-div label{
-          margin-right: 5px;
-        }
-        .amount-input{
-          margin-right: 5px;
-          width:20%;
-        }
-          .return{
-            padding: 10px 20px;
-            min-width: 165px;
-            width: auto;
-            height: 50px;
-            letter-spacing: 0.5px;
-            line-height: 50px;
-            font-size: 15px;
-            background-color: black;
-            color: white;
-            text-transform: uppercase;
-            font-family: 'Open Sans Condensed';
-            font-weight: bolder;
-            border: none;
-            cursor: pointer;
-        }
-
-        .return:hover{
-          background-color: white;
-          color: black;
-          border: 1px solid black;
-        }
-          .painting-modal {
-            text-align:center;
-            align-content: center;
-          }
-  `}
-        </style>
       </div>
     </Layout>
   )
